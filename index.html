@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ethan Dunn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="index.html" class="wordmark">Ethan</a>
+    <div class="topbar-right">
+      <nav class="topbar-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="topbar-icons">
+        <a href="https://www.instagram.com/ethann_dunnn/" target="_blank" rel="noopener" class="icon-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="12" r="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/@ethan_dunn" target="_blank" rel="noopener" class="icon-link" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="2" y="5" width="20" height="14" rx="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 9.2l5.5 2.8-5.5 2.8V9.2z" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/ethan-dunn-ab45ab425" target="_blank" rel="noopener" class="icon-link" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="4" stroke-linejoin="round"/>
+            <circle cx="7.5" cy="7.2" r="0.9" fill="currentColor" stroke="none"/>
+            <line x1="7.5" y1="10.2" x2="7.5" y2="16.5" stroke-linecap="round"/>
+            <path d="M11.3 16.5v-3.6c0-1.7 1.1-2.6 2.4-2.6s2.3.9 2.3 2.6v3.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="11.3" y1="10.2" x2="11.3" y2="16.5" stroke-linecap="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero-row">
+    <section id="timeline" class="timeline">
+      <h2 class="timeline-heading">Log</h2>
+      <ol class="timeline-list">
+        <li>
+          <time datetime="2026-09-11">09.11.26</time>
+          <span>Builds his first portfolio site.</span>
+        </li>
+        <li>
+          <time datetime="2026-09-09">09.09.26</time>
+          <span>Posts his first short-form video on YouTube.</span>
+        </li>
+        <li>
+          <time datetime="2026-09-09">09.09.26</time>
+          <span>Posts his first video on Instagram.</span>
+        </li>
+        <li>
+          <time datetime="2026-09-05">09.05.26</time>
+          <span>Launches AllAP &mdash; his first shipped, live app.</span>
+        </li>
+        <li>
+          <time datetime="2026-08-22">08.22.26</time>
+          <span>Starts actually learning to code and build apps.</span>
+        </li>
+        <li>
+          <time datetime="2026-07-23">07.23.26</time>
+          <span>Deploys his first real app &mdash; a startup-idea tool.</span>
+        </li>
+        <li>
+          <time datetime="2026-05">May 2026</time>
+          <span>Builds his first-ever app MVP &mdash; an AI tutoring app.</span>
+        </li>
+        <li>
+          <time datetime="2011-09-06">09.06.11</time>
+          <span>Ethan is born.</span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="hero">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-left">
+      <span class="monogram">ED</span>
+      <span class="copyright">&copy; <span id="year"></span> <a href="index.html">Ethan Dunn</a></span>
+    </div>
+    <div class="footer-right">
+      <span id="ethan-time" class="ethan-time"></span>
+    </div>
+  </footer>
+
+  <script type="module" src="hero.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
