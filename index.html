@@ -8,8 +8,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    // set the saved palette before first paint so the page never flashes
+    try {
+      var p = ['og', 'paper', 'carbon'][Number(localStorage.getItem('ethan-palette')) || 0];
+      if (p && p !== 'og') document.documentElement.dataset.theme = p;
+    } catch (e) {}
+  </script>
 </head>
 <body>
+
+  <canvas id="stars" aria-hidden="true"></canvas>
 
   <header class="topbar">
     <a href="index.html" class="wordmark">Ethan</a>
@@ -103,9 +112,14 @@
       </ol>
     </section>
 
-    <section class="hero">
-      <canvas id="hero-canvas" aria-hidden="true"></canvas>
-    </section>
+    <div class="stage">
+      <button type="button" class="click-cue" aria-label="Change the shape and color palette">
+        <span>Click</span>
+      </button>
+      <section class="hero">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      </section>
+    </div>
   </div>
 
   <footer class="site-footer">
@@ -118,7 +132,10 @@
     </div>
   </footer>
 
-  <script type="module" src="hero.js"></script>
+  <script src="three.min.js"></script>
+  <script src="hero.js"></script>
   <script src="script.js"></script>
+  <script src="stars.js"></script>
+  <script src="theme-cycle.js"></script>
 </body>
 </html>
