@@ -9,6 +9,25 @@
   --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
 }
 
+/* Click-through palettes — the hero cue cycles og -> paper -> carbon -> og.
+   :root above is "og" and is always what a first-time visitor loads into. */
+
+:root[data-theme="paper"] {
+  --bg: #ffffff;
+  --ink: #000000;
+  --muted: #767676;
+  --hairline: #e3e3e3;
+  --accent: #000000;
+}
+
+:root[data-theme="carbon"] {
+  --bg: #000000;
+  --ink: #ffffff;
+  --muted: #8c8c8c;
+  --hairline: #262626;
+  --accent: #ffffff;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -18,9 +37,15 @@ html, body {
   padding: 0;
 }
 
+html {
+  background: var(--bg);
+  transition: background-color 0.75s ease;
+}
+
 body {
   background: var(--bg);
   color: var(--ink);
+  transition: background-color 0.75s ease, color 0.75s ease;
   font-family: var(--font-sans);
   font-weight: 300;
   line-height: 1.5;
@@ -34,6 +59,60 @@ a {
 
 a:hover {
   color: var(--accent);
+}
+
+/* Everything tinted by the palette eases over on a click, so the swap reads
+   as one slow cross-fade instead of a hard cut. */
+.timeline-list li,
+.site-footer,
+.monogram,
+.about-photo-frame {
+  transition: border-color 0.75s ease, color 0.75s ease;
+}
+
+.topbar-nav,
+.timeline-list time,
+.timeline-heading,
+.icon-link,
+.about h1,
+.site-footer {
+  transition: color 0.75s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  .timeline-list li,
+  .site-footer,
+  .monogram,
+  .about-photo-frame,
+  .topbar-nav,
+  .timeline-list time,
+  .timeline-heading,
+  .icon-link,
+  .about h1 {
+    transition: none;
+  }
+}
+
+/* Drifting star field behind the whole page */
+
+#stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* every piece of page chrome rides above the star layer */
+.topbar,
+.hero-row,
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
 }
 
 /* Top bar — name + page nav + social icons */
@@ -104,6 +183,15 @@ a:hover {
   padding: 2.25rem clamp(1.25rem, 4vw, 3rem) 0;
 }
 
+/* middle column: CLICK stacked directly above the shape */
+.stage {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .hero-row .timeline {
   grid-column: 1;
   max-width: 300px;
@@ -111,16 +199,77 @@ a:hover {
 }
 
 .hero {
-  grid-column: 2;
   position: relative;
+  width: 100%;
   height: clamp(240px, 34vw, 400px);
   overflow: hidden;
+  cursor: pointer;
 }
 
 #hero-canvas {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+/* Click cue — big breathing CLICK across the top of the page */
+
+.click-cue {
+  background: none;
+  border: none;
+  padding: 0.25em 0 0.15em;
+  margin: 0;
+  cursor: pointer;
+  display: block;
+  font-family: var(--font-mono);
+  font-size: clamp(1.3rem, 3vw, 2.3rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0.4em;
+  text-indent: 0.4em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: color 0.75s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.click-cue span {
+  display: block;
+  animation: cue-breathe 3.4s ease-in-out infinite;
+}
+
+/* slow fade up and back down — never fully gone, never fully solid */
+@keyframes cue-breathe {
+  0%, 100% { opacity: 0.14; }
+  50% { opacity: 0.95; }
+}
+
+/* the moment of the click: the word blooms wide, then settles back */
+.click-cue.is-firing span {
+  animation: cue-fire 0.8s ease-out;
+}
+
+@keyframes cue-fire {
+  0% { opacity: 1; letter-spacing: 0.4em; }
+  40% { opacity: 1; letter-spacing: 0.72em; }
+  100% { opacity: 0.14; letter-spacing: 0.4em; }
+}
+
+.click-cue:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 0.2em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .click-cue span,
+  .click-cue.is-firing span {
+    animation: none;
+    opacity: 0.8;
+  }
+
+  .click-cue {
+    transition: none;
+  }
 }
 
 /* Main */
@@ -168,8 +317,8 @@ section {
   height: 100%;
   object-fit: cover;
   object-position: 50% 65%;
-  transform: scale(1.35);
-  transform-origin: 50% 65%;
+  transform: scale(3.65);
+  transform-origin: 54% 76%;
 }
 
 .about-body {
@@ -336,7 +485,7 @@ section {
     max-width: none;
   }
 
-  .hero {
+  .stage {
     grid-column: 1;
   }
 }

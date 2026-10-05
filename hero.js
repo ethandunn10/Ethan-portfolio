@@ -1,4 +1,5 @@
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+/* three.js is loaded as a plain script (three.min.js) so this works over
+   file:// and with no network — ES modules are blocked on file:// URLs. */
 
 const canvas = document.getElementById('hero-canvas');
 const heroSection = document.querySelector('.hero');
@@ -26,25 +27,49 @@ window.addEventListener('resize', resize);
 
 const lineColor = new THREE.Color(accent);
 
-// Wireframe sphere
-const sphereGeo = new THREE.WireframeGeometry(new THREE.SphereGeometry(1.2, 20, 14));
-const sphere = new THREE.LineSegments(
-  sphereGeo,
-  new THREE.LineBasicMaterial({ color: lineColor, transparent: true, opacity: 0.85 })
-);
+// One wireframe per click state: sphere -> cube -> 3D triangle (tetrahedron).
+function wireframe(geometry, opacity) {
+  return new THREE.LineSegments(
+    new THREE.WireframeGeometry(geometry),
+    new THREE.LineBasicMaterial({ color: lineColor.clone(), transparent: true, opacity })
+  );
+}
 
-// Wireframe cube, nested inside the sphere
-const cubeGeo = new THREE.WireframeGeometry(new THREE.BoxGeometry(1.35, 1.35, 1.35));
-const cube = new THREE.LineSegments(
-  cubeGeo,
-  new THREE.LineBasicMaterial({ color: lineColor, transparent: true, opacity: 0.5 })
-);
+const shapes = [
+  wireframe(new THREE.SphereGeometry(1.2, 20, 14), 0.85),
+  wireframe(new THREE.BoxGeometry(1.6, 1.6, 1.6), 0.85),
+  wireframe(new THREE.TetrahedronGeometry(1.55), 0.9),
+];
 
 const group = new THREE.Group();
-group.add(sphere, cube);
+shapes.forEach((shape, i) => {
+  shape.visible = i === 0;
+  group.add(shape);
+});
+
+// sits just below centre, under the CLICK cue
+group.position.y = -0.15;
 scene.add(group);
 
+let current = 0;
+
+// called by the click cycle
+window.__setHeroShape = (i) => {
+  current = ((i % shapes.length) + shapes.length) % shapes.length;
+  shapes.forEach((shape, n) => {
+    shape.visible = n === current;
+  });
+  if (reduceMotion) renderer.render(scene, camera);
+};
+
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// let the click-cycle recolor the wireframe when the palette changes
+window.__setHeroAccent = (hex) => {
+  lineColor.set(hex);
+  shapes.forEach((shape) => shape.material.color.set(hex));
+  if (reduceMotion) renderer.render(scene, camera);
+};
 
 let mouseX = 0;
 let mouseY = 0;
@@ -56,10 +81,9 @@ window.addEventListener('mousemove', (e) => {
 function animate() {
   requestAnimationFrame(animate);
 
-  sphere.rotation.y += 0.0028;
-  sphere.rotation.x += 0.0011;
-  cube.rotation.y -= 0.0019;
-  cube.rotation.x += 0.0015;
+  const shape = shapes[current];
+  shape.rotation.y += 0.0028;
+  shape.rotation.x += 0.0011;
 
   // gentle parallax toward the cursor
   group.rotation.y += (mouseX * 0.4 - group.rotation.y) * 0.03;
