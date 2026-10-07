@@ -508,3 +508,178 @@ section {
     width: 3.8rem;
   }
 }
+
+/* ===================================================================
+   Stat line — same hairline-and-mono language as the Log: labels in
+   mono caps, numbers set light and tabular so the columns line up.
+   =================================================================== */
+
+.statline {
+  position: relative;
+  z-index: 1;
+  margin: clamp(2.5rem, 6vw, 5rem) 0 4.5rem;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+.statline-head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.statline-heading {
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 0;
+  transition: color 0.75s ease;
+}
+
+.statline-note {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.75s ease;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  margin: 0;
+  border-top: 1px solid var(--hairline);
+  transition: border-color 0.75s ease;
+}
+
+.stat {
+  padding: 1.35rem 1.25rem 1.5rem 0;
+  border-bottom: 1px solid var(--hairline);
+  transition: border-color 0.75s ease;
+}
+
+.stat dt {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.85rem;
+  transition: color 0.75s ease;
+}
+
+.stat dd {
+  margin: 0;
+}
+
+.stat-num {
+  display: block;
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  font-weight: 200;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.75s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stat-sub {
+  display: block;
+  margin-top: 0.7rem;
+  font-size: 0.73rem;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 24ch;
+  transition: color 0.75s ease;
+}
+
+/* The two reach numbers read as one thought, so the second one leans on
+   the first instead of standing on its own. */
+.stat.is-pair .stat-num {
+  color: var(--accent);
+}
+
+.stat:hover .stat-num {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* What's next — borrows the Log's flashing question marks, because it's
+   the same idea: a slot that isn't filled in yet. */
+.stat.is-next .stat-num {
+  display: inline-flex;
+  gap: 0.12em;
+  color: var(--accent);
+}
+
+.stat.is-next .stat-num i {
+  font-style: normal;
+  animation: next-flash 1.5s steps(1, end) infinite;
+}
+
+.stat.is-next .stat-num i:nth-child(2) { animation-delay: 0.25s; }
+.stat.is-next .stat-num i:nth-child(3) { animation-delay: 0.5s; }
+
+@media (max-width: 480px) {
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat {
+    padding-right: 0.9rem;
+  }
+
+  .stat-sub {
+    max-width: none;
+  }
+}
+
+/* Scroll reveal — one soft rise, staggered across the cells.
+   Scoped to html.js so the stats stay visible if JS never runs. */
+
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+html.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .statline-heading,
+  .statline-note,
+  .stat-grid,
+  .stat,
+  .stat dt,
+  .stat-num,
+  .stat-sub {
+    transition: none;
+  }
+
+  .stat.is-next .stat-num i {
+    animation: none;
+  }
+
+  .stat:hover .stat-num {
+    transform: none;
+  }
+}

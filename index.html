@@ -9,6 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
+    // the stat line only hides itself when JS is alive to bring it back
+    document.documentElement.classList.add('js');
+
     // set the saved palette before first paint so the page never flashes
     try {
       var p = ['og', 'paper', 'carbon'][Number(localStorage.getItem('ethan-palette')) || 0];
@@ -127,6 +130,48 @@
     </div>
   </div>
 
+
+  <section class="statline" id="statline" aria-labelledby="statline-heading">
+    <div class="statline-head" data-reveal>
+      <h2 class="statline-heading" id="statline-heading">Stat line</h2>
+      <span class="statline-note">Counted, not rounded</span>
+    </div>
+    <dl class="stat-grid">
+      <div class="stat" data-reveal>
+        <dt>Age</dt>
+        <dd data-count="15"><span class="stat-num">15</span><span class="stat-sub">Fifteen, and a few months into any of this.</span></dd>
+      </div>
+      <div class="stat" data-reveal>
+        <dt>Builds shipped</dt>
+        <dd data-count="4"><span class="stat-num">4</span><span class="stat-sub">AI tutor MVP, startup-idea tool, Kovrio, AirWrite.</span></dd>
+      </div>
+      <div class="stat" data-reveal>
+        <dt>First hackathon</dt>
+        <dd><span class="stat-num">2nd</span><span class="stat-sub">Runner-up at Hack the Track, with AirWrite.</span></dd>
+      </div>
+      <div class="stat" data-reveal>
+        <dt>Paid client work</dt>
+        <dd data-count="1"><span class="stat-num">1</span><span class="stat-sub">Logo and marketing strategy for a retired FBI agent.</span></dd>
+      </div>
+      <div class="stat is-pair" data-reveal>
+        <dt>Biggest video</dt>
+        <dd data-count="9.3" data-decimals="1" data-suffix="K"><span class="stat-num">9.3K</span><span class="stat-sub">Views on one Instagram post.</span></dd>
+      </div>
+      <div class="stat is-pair" data-reveal>
+        <dt>Posts it took</dt>
+        <dd data-count="8"><span class="stat-num">8</span><span class="stat-sub">Eight. He started posting in September.</span></dd>
+      </div>
+      <div class="stat" data-reveal>
+        <dt>Math, years ahead</dt>
+        <dd data-count="3" data-prefix="+"><span class="stat-num">+3</span><span class="stat-sub">Placed up three grade levels in Aug 2022.</span></dd>
+      </div>
+      <div class="stat is-next" data-reveal>
+        <dt>Up next</dt>
+        <dd><span class="stat-num" aria-hidden="true"><i>?</i><i>?</i><i>?</i></span><span class="stat-sub">Looking for an internship.</span></dd>
+      </div>
+    </dl>
+  </section>
+
   <footer class="site-footer">
     <div class="footer-left">
       <span class="monogram">ED</span>
@@ -141,6 +186,7 @@
   <script src="hero.js"></script>
   <script src="script.js"></script>
   <script src="stars.js"></script>
+  <script src="statline.js"></script>
   <script src="theme-cycle.js"></script>
 </body>
 </html>
