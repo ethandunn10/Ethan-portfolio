@@ -9,6 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
+    // reveals only hide themselves when JS is alive to bring them back
+    document.documentElement.classList.add('js');
+
     // set the saved palette before first paint so the page never flashes
     try {
       var p = ['og', 'paper', 'carbon'][Number(localStorage.getItem('ethan-palette')) || 0];
@@ -17,6 +20,8 @@
   </script>
 </head>
 <body>
+
+  <div class="scroll-rail" aria-hidden="true"><i></i></div>
 
   <canvas id="stars" aria-hidden="true"></canvas>
 
@@ -61,7 +66,7 @@
 
   <main class="about-main">
 
-    <section id="about" class="about">
+    <section id="about" class="about" data-reveal>
       <h1>Who is Ethan Dunn?</h1>
       <div class="about-layout">
         <div class="about-photo-frame">
@@ -91,6 +96,7 @@
 
   <script src="script.js"></script>
   <script src="stars.js"></script>
+  <script src="statline.js"></script>
   <script src="theme-cycle.js"></script>
 </body>
 </html>
