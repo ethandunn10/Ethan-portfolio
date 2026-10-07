@@ -600,9 +600,9 @@ section {
   transition: color 0.75s ease;
 }
 
-/* The two reach numbers read as one thought, so the second one leans on
-   the first instead of standing on its own. */
-.stat.is-pair .stat-num {
+/* The reach number carries the accent — it's the one a stranger reads
+   first, and it landed on only his third video. */
+.stat.is-standout .stat-num {
   color: var(--accent);
 }
 
