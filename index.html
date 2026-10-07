@@ -9,9 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
-    // reveals only hide themselves when JS is alive to bring them back
-    document.documentElement.classList.add('js');
-
     // set the saved palette before first paint so the page never flashes
     try {
       var p = ['og', 'paper', 'carbon'][Number(localStorage.getItem('ethan-palette')) || 0];
@@ -20,8 +17,6 @@
   </script>
 </head>
 <body>
-
-  <div class="scroll-rail" aria-hidden="true"><i></i></div>
 
   <canvas id="stars" aria-hidden="true"></canvas>
 
@@ -65,7 +60,7 @@
   </header>
 
   <div class="hero-row">
-    <section id="timeline" class="timeline" data-reveal>
+    <section id="timeline" class="timeline">
       <h2 class="timeline-heading">Log</h2>
       <ol class="timeline-list">
         <li class="timeline-next" aria-hidden="true">
@@ -132,39 +127,6 @@
     </div>
   </div>
 
-  <section class="statline" id="statline" aria-labelledby="statline-heading">
-    <div class="statline-head" data-reveal>
-      <h2 class="statline-heading" id="statline-heading">Stat line</h2>
-      <span class="statline-note">Counted, not rounded</span>
-    </div>
-    <dl class="stat-grid">
-      <div class="stat" data-reveal>
-        <dt>Age</dt>
-        <dd data-count="15"><span class="stat-num">15</span><span class="stat-sub">Fifteen, and only a few months into any of this.</span></dd>
-      </div>
-      <div class="stat" data-reveal>
-        <dt>Builds shipped</dt>
-        <dd data-count="4"><span class="stat-num">4</span><span class="stat-sub">AI tutor MVP, startup-idea tool, Kovrio, AirWrite.</span></dd>
-      </div>
-      <div class="stat" data-reveal>
-        <dt>Live &amp; free</dt>
-        <dd data-count="1"><span class="stat-num">1</span><span class="stat-sub">Kovrio, open to any high school student.</span></dd>
-      </div>
-      <div class="stat" data-reveal>
-        <dt>Hackathons</dt>
-        <dd data-count="1"><span class="stat-num">1</span><span class="stat-sub">Hack the Track &mdash; runner-up on the first try.</span></dd>
-      </div>
-      <div class="stat is-live" data-reveal>
-        <dt>Days building</dt>
-        <dd data-live="days"><span class="stat-num">&mdash;</span><span class="stat-sub">Since 08.22.26. Still counting.</span></dd>
-      </div>
-      <div class="stat" data-reveal>
-        <dt>Math, years ahead</dt>
-        <dd data-count="3" data-prefix="+"><span class="stat-num">+3</span><span class="stat-sub">Placed up three grade levels in Aug 2022.</span></dd>
-      </div>
-    </dl>
-  </section>
-
   <footer class="site-footer">
     <div class="footer-left">
       <span class="monogram">ED</span>
@@ -179,7 +141,6 @@
   <script src="hero.js"></script>
   <script src="script.js"></script>
   <script src="stars.js"></script>
-  <script src="statline.js"></script>
   <script src="theme-cycle.js"></script>
 </body>
 </html>

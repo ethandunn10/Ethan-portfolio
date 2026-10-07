@@ -24,7 +24,6 @@
   }
 
   let index = stored();
-  let first = true;
 
   function apply(i) {
     index = (i + CYCLE.length) % CYCLE.length;
@@ -40,8 +39,7 @@
     try { localStorage.setItem(STORE, String(index)); } catch (e) { /* private mode */ }
 
     if (window.__setHeroAccent) window.__setHeroAccent(state.accent);
-    if (window.__setHeroShape) window.__setHeroShape(index, first);
-    first = false;
+    if (window.__setHeroShape) window.__setHeroShape(index);
   }
 
   const cue = document.querySelector('.click-cue');
@@ -49,7 +47,6 @@
 
   function advance() {
     apply(index + 1);
-    if (window.__kickHero) window.__kickHero();
 
     // restart the bloom animation on every click
     if (!cue) return;
@@ -65,14 +62,8 @@
     });
   }
 
-  // the shape itself is a click target too — but spinning it with a drag
-  // shouldn't also swap the palette, so hero.js flags a real drag for us
-  if (hero) {
-    hero.addEventListener('click', () => {
-      if (window.__heroWasDragged) return;
-      advance();
-    });
-  }
+  // the shape itself is a click target too
+  if (hero) hero.addEventListener('click', advance);
 
   apply(index);
 })();
