@@ -683,3 +683,268 @@ html.js [data-reveal].is-in {
     transform: none;
   }
 }
+
+/* ===================================================================
+   Lede — who he is, stated plainly above the hero. Same mono-caps
+   label language as the Log and the Stat line.
+   =================================================================== */
+
+.lede {
+  position: relative;
+  z-index: 1;
+  padding: clamp(1.75rem, 5vw, 3.25rem) clamp(1.25rem, 4vw, 3rem) 0;
+  max-width: 44rem;
+}
+
+.lede h1 {
+  margin: 0;
+  font-size: clamp(1.9rem, 5vw, 2.9rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  transition: color 0.75s ease;
+}
+
+.lede-role {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: color 0.75s ease;
+}
+
+.lede-line {
+  margin: 1rem 0 0;
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--muted);
+  transition: color 0.75s ease;
+}
+
+.lede-mail {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 0.15rem;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.lede-mail:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ===================================================================
+   Work — selected past work, one hairline row per kind of work.
+   =================================================================== */
+
+.work {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 4.5rem;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+.work-head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.work-heading {
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 0;
+  transition: color 0.75s ease;
+}
+
+.work-note {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.75s ease;
+}
+
+.work-list {
+  margin: 0;
+  border-top: 1px solid var(--hairline);
+  transition: border-color 0.75s ease;
+}
+
+.work-item {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--hairline);
+  transition: border-color 0.75s ease;
+}
+
+.work-item dt {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 0.2rem;
+  transition: color 0.75s ease;
+}
+
+.work-item dd {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.work-title {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--ink);
+  transition: color 0.75s ease;
+}
+
+.work-sub {
+  font-size: 0.82rem;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--muted);
+  transition: color 0.75s ease;
+}
+
+.work-item.is-next .work-title {
+  color: var(--accent);
+  transition: color 0.75s ease;
+}
+
+.work-contact {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.75rem;
+}
+
+.work-contact-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.75s ease;
+}
+
+.work-contact a {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 0.15rem;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.work-contact a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+@media (max-width: 560px) {
+  .work-item {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+}
+
+/* Footer email sits beside the clock */
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.footer-mail {
+  font-family: var(--font-mono);
+  font-weight: 300;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-mail:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 560px) {
+  .footer-mail {
+    display: none;
+  }
+}
+
+/* The about page's inline mailto */
+
+.about-mail {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hairline);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.about-mail:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Copy button beside the contact email */
+
+.copy-mail {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.copy-mail:hover {
+  color: var(--ink);
+  border-color: var(--muted);
+}
+
+.copy-mail.is-copied {
+  color: var(--accent);
+  border-color: var(--accent);
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+.copy-mail:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 2px;
+}
