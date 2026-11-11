@@ -761,7 +761,7 @@ html.js [data-reveal].is-in {
 
 .topbar--over {
   position: absolute;
-  top: 0;
+  top: 1.6rem;
   left: 0;
   right: 0;
   z-index: 6;
@@ -804,17 +804,24 @@ html.js [data-reveal].is-in {
 
 .ch {
   display: inline-block;
-  animation: ch-in 0.72s cubic-bezier(0.2, 1.2, 0.35, 1) backwards;
-  animation-delay: calc(var(--i) * 45ms);
+  color: var(--accent);
+  background: linear-gradient(105deg, var(--accent) 42%, #f6dc96 50%, var(--accent) 58%) 100% 0 / 320% 100% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation:
+    ch-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i) * 50ms) backwards,
+    ch-shine 0.9s ease-in-out calc(0.6s + var(--i) * 55ms) backwards;
 }
 
-.intro-word--l .ch { --from: -75vw; }
-.intro-word--r .ch { --from: 75vw; }
-
 @keyframes ch-in {
-  from { transform: translateX(var(--from)); opacity: 0; }
-  35% { opacity: 1; }
-  to { transform: none; opacity: 1; }
+  from { opacity: 0; filter: blur(14px); transform: translateY(0.18em) scale(1.12); }
+  to { opacity: 1; filter: blur(0); transform: none; }
+}
+
+@keyframes ch-shine {
+  from { background-position: 100% 0; }
+  to { background-position: 0 0; }
 }
 
 /* the cut-out stands in front of the name, like a magazine cover */
@@ -823,7 +830,7 @@ html.js [data-reveal].is-in {
   left: 50%;
   bottom: 0;
   z-index: 2;
-  height: 84%;
+  height: 64%;
   width: auto;
   max-width: none;
   transform: translateX(-50%);
@@ -900,12 +907,17 @@ html.js [data-reveal].is-in {
 /* Ticker */
 
 .ticker {
-  position: relative;
-  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 7;
   overflow: hidden;
-  background: var(--ink);
-  color: var(--tan);
-  padding: 0.7rem 0;
+  color: var(--brown);
+  opacity: 0.55;
+  padding: 0.65rem 0;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 400;
@@ -961,16 +973,14 @@ html.js [data-reveal].is-in {
   margin: 0;
   max-height: 74vh;
   max-height: 74svh;
-  overflow-y: auto;
+  overflow: hidden;
   padding-right: 0.75rem;
-  scrollbar-width: thin;
-  scrollbar-color: var(--hairline) transparent;
-  -webkit-mask-image: linear-gradient(to bottom, #000 85%, transparent);
-  mask-image: linear-gradient(to bottom, #000 85%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 86%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 86%, transparent);
 }
 
 .facts-log .timeline-list {
-  padding-bottom: 3rem;
+  padding: 1rem 0 3rem;
 }
 
 .facts-stage {
@@ -1074,7 +1084,7 @@ html.js [data-reveal].is-in {
 
 @media (max-width: 760px) {
   .intro-name {
-    top: 31%;
+    top: 36%;
     flex-direction: column;
     align-items: center;
     gap: 0.02em;
@@ -1082,7 +1092,8 @@ html.js [data-reveal].is-in {
   }
 
   .intro-me {
-    height: 64%;
+    height: auto;
+    width: 125vw;
     animation-name: me-up-phone;
   }
 
@@ -1095,11 +1106,12 @@ html.js [data-reveal].is-in {
   .float { font-size: 0.62rem; }
   .f1 { left: 5%;  top: 17%; }
   .f2 { right: 5%; top: 19%; left: auto; }
-  .f3 { left: 4%;  top: 63%; }
-  .f4 { left: 4%;  top: 80%; right: auto; }
-  .f5 { right: 4%; top: 68%; left: auto; }
+  .f3 { left: 5%;  top: 57%; }
+  .f4 { display: none; }
+  .f5 { right: 5%; top: 55%; left: auto; }
 
-  .ticker { font-size: 0.66rem; padding: 0.6rem 0; }
+  .ticker { font-size: 0.62rem; padding: 0.55rem 0; }
+  .topbar--over { top: 1.3rem; }
 
   .facts-track {
     height: 400vh;
@@ -1109,10 +1121,14 @@ html.js [data-reveal].is-in {
   .facts-pin {
     grid-template-columns: 1fr;
     align-content: center;
-    padding: 1.5rem 1.25rem;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
   }
 
-  .facts-log-slot { display: none; }
+  .facts-log-slot { order: 2; }
+
+  .facts-log { max-height: 27vh; max-height: 27svh; }
+  .facts-log .timeline-heading { margin: 0 0 0.25rem; }
 
   .facts-stage {
     height: auto;
@@ -1125,11 +1141,11 @@ html.js [data-reveal].is-in {
   #sphere-canvas {
     position: relative;
     inset: auto;
-    width: min(80vw, 46svh);
-    height: min(80vw, 46svh);
+    width: min(70vw, 32svh);
+    height: min(70vw, 32svh);
   }
 
-  .fact-list { width: 100%; min-height: 7.5rem; }
+  .fact-list { width: 100%; min-height: 6.5rem; }
   .fact-list::before { display: none; }
   .fact-t { font-size: 1.55rem; }
 
@@ -1138,18 +1154,7 @@ html.js [data-reveal].is-in {
     transform: none;
   }
 
-  .log-phone-slot {
-    position: relative;
-    z-index: 1;
-    padding: 1rem 1.25rem 0;
-  }
-
-  .log-phone-slot .facts-log {
-    max-height: none;
-    overflow: visible;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
+  .facts-stage { gap: 0.9rem; }
 }
 
 /* Reduce motion: nothing moves, everything is just there */
@@ -1185,6 +1190,7 @@ html.facts-static .fact-list::before { display: none; }
 html.facts-static .fact-list { gap: 2rem; }
 html.facts-static .fact { grid-area: auto; opacity: 1; transform: none; transition: none; }
 html.facts-static .fact-dots { display: none; }
+html.facts-static .facts-log { max-height: none; overflow: visible; -webkit-mask-image: none; mask-image: none; }
 
 @media (max-width: 760px) {
   html.facts-static .facts-pin { min-height: 0; }
@@ -1206,15 +1212,22 @@ html.facts-static .fact-dots { display: none; }
    =================================================================== */
 
 .about-me-wrap {
-  flex: 0 0 clamp(110px, 24vw, 210px);
+  flex: 0 0 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
   will-change: transform;
 }
 
-.about-cutout {
-  display: block;
-  width: 100%;
-  height: auto;
+/* the photo box slides up into place */
+.about-me-wrap .about-photo-frame {
+  flex: none;
   animation: about-up 0.8s cubic-bezier(0.2, 0.9, 0.25, 1) 0.1s backwards;
+}
+
+.about-monogram {
+  animation: about-up 0.6s ease 0.45s backwards;
 }
 
 @keyframes about-up {
@@ -1236,10 +1249,13 @@ html.js .about-body p.is-in .line {
 
 @media (max-width: 560px) {
   .about-layout { gap: 1.1rem; }
+  .about-me-wrap { flex-basis: 110px; }
+  .about-photo-frame { flex: none; width: 110px; height: 240px; }
   .about-body p { font-size: 0.95rem; line-height: 1.65; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .about-cutout { animation: none; }
+  .about-me-wrap .about-photo-frame,
+  .about-monogram { animation: none; }
   html.js .about-body .line { opacity: 1; transition: none; }
 }
