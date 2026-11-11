@@ -9,11 +9,8 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
-    // set the saved palette before first paint so the page never flashes
-    try {
-      var p = ['og', 'paper', 'carbon'][Number(localStorage.getItem('ethan-palette')) || 0];
-      if (p && p !== 'og') document.documentElement.dataset.theme = p;
-    } catch (e) {}
+    // the line-by-line reveal only hides text when JS is alive to show it
+    document.documentElement.classList.add('js');
   </script>
 </head>
 <body>
@@ -75,8 +72,8 @@
     <section id="about" class="about">
       <h1>Who is Ethan Dunn?</h1>
       <div class="about-layout">
-        <div class="about-photo-frame">
-          <img src="ethan.jpg" alt="Ethan Dunn" class="about-photo">
+        <div class="about-me-wrap">
+          <img src="ethan-cutout.png" alt="Ethan Dunn" class="about-cutout" width="413" height="1185">
         </div>
         <div class="about-body">
           <p>I'm a 15 year old digital creator and software developer, who loves building random projects and playing various sports. I've always been gifted, but I recently realized the potential of what I could do with those gifts.</p>
@@ -103,6 +100,6 @@
 
   <script src="script.js"></script>
   <script src="stars.js"></script>
-  <script src="theme-cycle.js"></script>
+  <script src="about.js"></script>
 </body>
 </html>

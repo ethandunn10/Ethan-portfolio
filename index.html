@@ -9,21 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
-    // the stat line only hides itself when JS is alive to bring it back
+    // reveals only hide things when JS is alive to bring them back
     document.documentElement.classList.add('js');
-
-    // set the saved palette before first paint so the page never flashes
-    try {
-      var p = ['og', 'paper', 'carbon'][Number(localStorage.getItem('ethan-palette')) || 0];
-      if (p && p !== 'og') document.documentElement.dataset.theme = p;
-    } catch (e) {}
   </script>
 </head>
 <body>
 
   <canvas id="stars" aria-hidden="true"></canvas>
 
-  <header class="topbar">
+  <header class="topbar topbar--over">
     <a href="index.html" class="wordmark">Ethan</a>
     <div class="topbar-right">
       <nav class="topbar-nav">
@@ -73,15 +67,33 @@
     </div>
   </header>
 
-  <section class="lede">
-    <h1>Ethan Dunn</h1>
-    <p class="lede-role">Digital creator &amp; software developer</p>
-    <p class="lede-line">I ship apps &mdash; web now, mobile next &mdash; and make short-form videos, from UGC to paid brand partnerships. Plus client design work.</p>
-    <a class="lede-mail" href="mailto:ethanjudgedunn10@gmail.com">ethanjudgedunn10@gmail.com</a>
+  <section class="intro" aria-label="Ethan Dunn">
+    <h1 class="intro-name" aria-label="Ethan Dunn">
+      <span class="intro-word intro-word--l" aria-hidden="true"><span class="ch" style="--i:0">E</span><span class="ch" style="--i:1">T</span><span class="ch" style="--i:2">H</span><span class="ch" style="--i:3">A</span><span class="ch" style="--i:4">N</span></span>
+      <span class="intro-word intro-word--r" aria-hidden="true"><span class="ch" style="--i:0">D</span><span class="ch" style="--i:1">U</span><span class="ch" style="--i:2">N</span><span class="ch" style="--i:3">N</span></span>
+    </h1>
+    <img class="intro-me" src="ethan-cutout.png" alt="Ethan Dunn" width="413" height="1185" fetchpriority="high">
+    <div class="intro-floats" aria-hidden="true">
+      <span class="float f1">founder</span>
+      <span class="float f2">student</span>
+      <span class="float f3">builder</span>
+      <span class="float f4">content creator</span>
+      <span class="float f5">athlete</span>
+    </div>
+    <a class="intro-scroll" href="#facts" aria-label="Scroll down">scroll <span aria-hidden="true">&darr;</span></a>
   </section>
 
-  <div class="hero-row">
-    <section id="timeline" class="timeline">
+  <div class="ticker" aria-label="Founder, builder, student, content creator, athlete">
+    <div class="ticker-track" aria-hidden="true">
+      <span>FOUNDER &#10022; BUILDER &#10022; STUDENT &#10022; CONTENT CREATOR &#10022; ATHLETE &#10022;&nbsp;</span><span>FOUNDER &#10022; BUILDER &#10022; STUDENT &#10022; CONTENT CREATOR &#10022; ATHLETE &#10022;&nbsp;</span><span>FOUNDER &#10022; BUILDER &#10022; STUDENT &#10022; CONTENT CREATOR &#10022; ATHLETE &#10022;&nbsp;</span><span>FOUNDER &#10022; BUILDER &#10022; STUDENT &#10022; CONTENT CREATOR &#10022; ATHLETE &#10022;&nbsp;</span>
+    </div>
+  </div>
+
+  <section class="facts" id="facts" aria-label="What I do">
+    <div class="facts-track">
+      <div class="facts-pin">
+        <div class="facts-log-slot">
+    <aside id="timeline" class="timeline facts-log" aria-label="Log">
       <h2 class="timeline-heading">Log</h2>
       <ol class="timeline-list">
         <li class="timeline-next" aria-hidden="true">
@@ -176,17 +188,24 @@
           <span>Ethan is born.</span>
         </li>
       </ol>
-    </section>
-
-    <div class="stage">
-      <button type="button" class="click-cue" aria-label="Change the shape and color palette">
-        <span>Click</span>
-      </button>
-      <section class="hero">
-        <canvas id="hero-canvas" aria-hidden="true"></canvas>
-      </section>
+    </aside>
+        </div>
+        <div class="facts-stage">
+          <canvas id="sphere-canvas" aria-hidden="true"></canvas>
+          <ol class="fact-list">
+            <li class="fact is-on"><span class="fact-k">01 &mdash; Builder</span><span class="fact-t">I build apps with AI.</span><span class="fact-s">Kovrio &mdash; 70 users.</span></li>
+            <li class="fact"><span class="fact-k">02 &mdash; Founder</span><span class="fact-t">Now building Rilo.</span><span class="fact-s">A screen-time buddy app, launching soon.</span></li>
+            <li class="fact"><span class="fact-k">03 &mdash; Content creator</span><span class="fact-t">4K followers.</span><span class="fact-s">400K+ views in 30 days.</span></li>
+            <li class="fact"><span class="fact-k">04 &mdash; Hackathons</span><span class="fact-t">Runner-up at Hack the Track.</span><span class="fact-s">My first hackathon, with AirWrite.</span></li>
+            <li class="fact"><span class="fact-k">05 &mdash; Student</span><span class="fact-t">3 APs + a dual-credit business class.</span><span class="fact-s">FBLA.</span></li>
+            <li class="fact"><span class="fact-k">06 &mdash; Athlete</span><span class="fact-t">Basketball.</span><span class="fact-s">Playing since 2014.</span></li>
+          </ol>
+          <div class="fact-dots" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
     </div>
-  </div>
+    <div class="log-phone-slot"></div>
+  </section>
 
 
   <section class="statline" id="statline" aria-labelledby="statline-heading">
@@ -247,10 +266,24 @@
         </dd>
       </div>
       <div class="work-item" data-reveal>
+        <dt>Rilo</dt>
+        <dd>
+          <span class="work-title">A screen-time buddy app</span>
+          <span class="work-sub">My next app, for iPhone. Launching soon.</span>
+        </dd>
+      </div>
+      <div class="work-item" data-reveal>
         <dt>Apps</dt>
         <dd>
           <span class="work-title">Kovrio, AirWrite, and a startup-idea tool</span>
-          <span class="work-sub">Three shipped builds. AirWrite took runner-up at Hack the Track.</span>
+          <span class="work-sub">Three shipped builds, all made with AI. Kovrio has 70 users; AirWrite took runner-up at Hack the Track.</span>
+        </dd>
+      </div>
+      <div class="work-item" data-reveal>
+        <dt>Content</dt>
+        <dd>
+          <span class="work-title">Short-form videos on Instagram &amp; YouTube</span>
+          <span class="work-sub">4K followers and 400K+ views in the last 30 days.</span>
         </dd>
       </div>
       <div class="work-item is-next" data-reveal>
@@ -282,9 +315,9 @@
 
   <script src="three.min.js"></script>
   <script src="hero.js"></script>
+  <script src="intro.js"></script>
   <script src="script.js"></script>
   <script src="stars.js"></script>
   <script src="statline.js"></script>
-  <script src="theme-cycle.js"></script>
 </body>
 </html>
