@@ -883,25 +883,32 @@ html.js [data-reveal].is-in {
   position: absolute;
   right: clamp(1.25rem, 4vw, 3rem);
   bottom: 1.5rem;
-  z-index: 3;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink);
+  z-index: 5;
+  display: block;
+  width: clamp(2.4rem, 4.5vw, 3.4rem);
+  color: var(--accent);
   animation: float-in 0.5s ease 1.15s backwards;
 }
 
-.intro-scroll span {
-  display: inline-block;
-  margin-left: 0.3em;
-  color: var(--accent);
-  animation: bob 1.6s ease-in-out infinite;
+.intro-scroll svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
+  filter: drop-shadow(0 4px 10px rgba(201, 150, 44, 0.35));
+  animation: bob 1.4s ease-in-out infinite;
 }
 
+.intro-scroll:hover svg { color: #b3841f; }
+
 @keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(5px); }
+  0%, 100% { transform: translateY(-6px); }
+  50% { transform: translateY(10px); }
 }
 
 /* Ticker */
@@ -1201,7 +1208,7 @@ html.facts-static .facts-log { max-height: none; overflow: visible; -webkit-mask
   .intro-me,
   .float,
   .intro-scroll,
-  .intro-scroll span,
+  .intro-scroll svg,
   .ticker-track {
     animation: none;
   }
@@ -1401,15 +1408,30 @@ main.about-v2 {
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: var(--brown);
-  color: var(--tan);
-  border-top: 1px solid var(--accent);
-  box-shadow: 0 -18px 30px -18px rgba(74, 53, 32, 0.45);
+  background: linear-gradient(180deg, #222 0%, var(--ink) 100%);
+  color: rgba(247, 244, 238, 0.82);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 400;
   letter-spacing: 0.22em;
   animation: float-in 0.6s ease 0.9s backwards;
+}
+
+/* thin gold hairline that fades out at the edges */
+.band::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent) 20%, #f6dc96 50%, var(--accent) 80%, transparent);
+}
+
+.band i {
+  font-style: normal;
+  color: var(--accent);
+  margin: 0 0.15em;
 }
 
 .band .ticker-track span {
