@@ -1387,3 +1387,65 @@ main.about-v2 {
   .about2-mono,
   .about2-me { animation: none; }
 }
+
+/* Bottom band: a solid strip that sits over the bottom of the cut-out so
+   the crop line is hidden behind a clean edge (home intro + about photo). */
+.band {
+  --band-h: 2.6rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  height: var(--band-h);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--brown);
+  color: var(--tan);
+  border-top: 1px solid var(--accent);
+  box-shadow: 0 -18px 30px -18px rgba(74, 53, 32, 0.45);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  animation: float-in 0.6s ease 0.9s backwards;
+}
+
+.band .ticker-track span {
+  white-space: nowrap;
+}
+
+.ticker-track--rev {
+  animation: tick-rev 34s linear infinite;
+}
+
+@keyframes tick-rev {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+/* keep the scroll cue and the ED badge above the band */
+.intro-scroll {
+  bottom: calc(2.6rem + 1.1rem);
+}
+
+.about2-badge {
+  bottom: calc(2.6rem + 1.1rem);
+}
+
+@media (max-width: 760px) {
+  .band {
+    --band-h: 2.2rem;
+    font-size: 0.6rem;
+  }
+  .intro-scroll,
+  .about2-badge {
+    bottom: calc(2.2rem + 0.9rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .band,
+  .ticker-track--rev { animation: none; }
+}
