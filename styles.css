@@ -85,6 +85,11 @@ a:hover {
   width: 100%;
   height: 100%;
   pointer-events: none;
+  transition: opacity 0.9s ease;
+}
+
+#stars.is-quiet {
+  opacity: 0.3;
 }
 
 /* every piece of page chrome rides above the star layer */
@@ -275,34 +280,6 @@ section {
   line-height: 1.6;
 }
 
-/* Pending "what's next" entry at the top of the Log */
-
-.timeline-next time {
-  display: inline-flex;
-  gap: 0.12em;
-  color: var(--accent);
-}
-
-/* Three question marks flashing on and off in sequence */
-.timeline-next time i {
-  font-style: normal;
-  animation: next-flash 1.5s steps(1, end) infinite;
-}
-
-.timeline-next time i:nth-child(2) { animation-delay: 0.25s; }
-.timeline-next time i:nth-child(3) { animation-delay: 0.5s; }
-
-@keyframes next-flash {
-  0%, 50% { opacity: 1; }
-  50.01%, 100% { opacity: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .timeline-next time i {
-    animation: none;
-  }
-}
-
 /* Footer */
 
 .site-footer {
@@ -467,22 +444,6 @@ section {
   transform: translateY(-2px);
 }
 
-/* What's next — borrows the Log's flashing question marks, because it's
-   the same idea: a slot that isn't filled in yet. */
-.stat.is-next .stat-num {
-  display: inline-flex;
-  gap: 0.12em;
-  color: var(--accent);
-}
-
-.stat.is-next .stat-num i {
-  font-style: normal;
-  animation: next-flash 1.5s steps(1, end) infinite;
-}
-
-.stat.is-next .stat-num i:nth-child(2) { animation-delay: 0.25s; }
-.stat.is-next .stat-num i:nth-child(3) { animation-delay: 0.5s; }
-
 @media (max-width: 480px) {
   .stat-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -531,10 +492,6 @@ html.js [data-reveal].is-in {
     transition: none;
   }
 
-  .stat.is-next .stat-num i {
-    animation: none;
-  }
-
   .stat:hover .stat-num {
     transform: none;
   }
@@ -577,99 +534,6 @@ html.js [data-reveal].is-in {
   text-transform: uppercase;
   color: var(--muted);
   transition: color 0.75s ease;
-}
-
-.work-list {
-  margin: 0;
-  border-top: 1px solid var(--hairline);
-  transition: border-color 0.75s ease;
-}
-
-.work-item {
-  display: grid;
-  grid-template-columns: 7.5rem 1fr;
-  gap: 1rem;
-  padding: 1.1rem 0;
-  border-bottom: 1px solid var(--hairline);
-  transition: border-color 0.75s ease;
-}
-
-.work-item dt {
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding-top: 0.2rem;
-  transition: color 0.75s ease;
-}
-
-.work-item dd {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.work-title {
-  font-size: 1rem;
-  font-weight: 300;
-  color: var(--ink);
-  transition: color 0.75s ease;
-}
-
-.work-sub {
-  font-size: 0.82rem;
-  font-weight: 300;
-  line-height: 1.55;
-  color: var(--muted);
-  transition: color 0.75s ease;
-}
-
-.work-item.is-next .work-title {
-  color: var(--accent);
-  transition: color 0.75s ease;
-}
-
-.work-contact {
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 1.75rem;
-}
-
-.work-contact-label {
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 300;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  transition: color 0.75s ease;
-}
-
-.work-contact a {
-  font-size: 1rem;
-  font-weight: 300;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--hairline);
-  padding-bottom: 0.15rem;
-  transition: color 0.3s ease, border-color 0.3s ease;
-}
-
-.work-contact a:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
-
-@media (max-width: 560px) {
-  .work-item {
-    grid-template-columns: 1fr;
-    gap: 0.4rem;
-  }
 }
 
 /* Footer email sits beside the clock */
@@ -1471,3 +1335,631 @@ main.about-v2 {
   .band,
   .ticker-track--rev { animation: none; }
 }
+
+/* ===================================================================
+   Refine (Nov 2026): calmer motion, new hero photo, project showcase,
+   contact. Same cream, gold, ink, mono labels and hairlines as above.
+   =================================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+section[id] {
+  scroll-margin-top: 1.5rem;
+}
+
+:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* top bar: nav reads as links, not decoration */
+.topbar-nav a {
+  padding: 0.25rem 0;
+}
+
+/* --- Hero ---------------------------------------------------------- */
+
+.intro picture {
+  display: contents;
+}
+
+/* new cut-out is a little taller than wide; keep the head clear of the
+   name so the letters frame the face instead of slicing through it */
+.intro-me {
+  height: 66%;
+  max-height: 900px;
+  image-rendering: auto;
+}
+
+.intro-lede {
+  position: absolute;
+  left: clamp(1.25rem, 4vw, 3rem);
+  bottom: calc(2.6rem + 1.75rem);
+  z-index: 3;
+  margin: 0;
+  max-width: 21rem;
+  font-size: clamp(0.9rem, 1.05vw, 1rem);
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--ink);
+  animation: float-in 0.6s ease 1.1s backwards;
+}
+
+/* labels sit in the open space around the photo, never under the lede */
+.f1 { left: 6%;  top: 22%; }
+.f2 { right: 7%; top: 24%; }
+.f3 { left: 11%; top: 62%; }
+.f4 { right: 9%; top: 64%; }
+.f5 { left: auto; right: 20%; top: 82%; }
+
+@media (max-width: 1100px) and (min-width: 761px) {
+  .f5 { display: none; }
+}
+
+@media (max-width: 760px) {
+  .intro-me {
+    width: auto;
+    height: 62%;
+    height: 62svh;
+    max-width: none;
+  }
+
+  .intro-name { top: 33%; }
+
+  .intro-lede {
+    left: 1.25rem;
+    right: 1.25rem;
+    top: 14%;
+    top: 14svh;
+    bottom: auto;
+    max-width: 22rem;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 0.88rem;
+    color: var(--ink);
+  }
+
+  /* the ticker and band already carry these words on a phone */
+  .intro-floats { display: none; }
+}
+
+@media (max-width: 760px) and (max-height: 640px) {
+  .intro-lede { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-lede { animation: none; }
+}
+
+/* --- Builder / sphere ---------------------------------------------- */
+
+/* less scroll spent pinned, so it reads as a section and not a toll */
+.facts-track {
+  height: 360vh;
+  height: 360svh;
+}
+
+.facts-stage {
+  max-height: 720px;
+}
+
+/* compact, readable Log */
+.facts-log .timeline-heading {
+  margin-bottom: 0.75rem;
+}
+
+.facts-log .timeline-list li {
+  padding: 0.7rem 0.25rem;
+  font-size: 0.82rem;
+}
+
+.facts-log .timeline-list li:first-child {
+  padding-top: 0.7rem;
+}
+
+.timeline-list time {
+  color: var(--muted);
+}
+
+.timeline-list li:first-child time {
+  color: var(--accent);
+}
+
+@media (max-width: 760px) {
+  .facts-track {
+    height: 330vh;
+    height: 330svh;
+  }
+}
+
+/* --- Numbers ------------------------------------------------------- */
+
+.stat-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.stat:hover .stat-num {
+  transform: none;
+}
+
+.stat.is-standout dt {
+  color: var(--accent);
+}
+
+/* --- Work: project showcase ---------------------------------------- */
+
+.work {
+  margin-bottom: 0;
+}
+
+/* the last project's hairline is the divider into Contact */
+.proj-list .proj:last-child {
+  border-bottom: none;
+}
+
+.work-head,
+.statline-head {
+  margin-bottom: 1.25rem;
+}
+
+.proj-list {
+  border-top: 1px solid var(--hairline);
+}
+
+.proj {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: 1.25rem 2.5rem;
+  padding: clamp(2rem, 4vw, 3rem) 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.proj.has-media {
+  grid-template-columns: 11rem minmax(0, 1fr) minmax(0, 1.05fr);
+}
+
+.proj-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.proj-num {
+  color: var(--accent);
+}
+
+.proj-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.35rem;
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+.proj-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--muted);
+  flex: none;
+}
+
+.proj-status.is-live::before {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.proj-status.is-next {
+  color: var(--accent);
+}
+
+.proj-status.is-next::before {
+  border-color: var(--accent);
+}
+
+.proj-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 34rem;
+}
+
+.proj-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.proj-mark {
+  width: 1.4em;
+  height: 1.4em;
+  mix-blend-mode: multiply; /* the mark ships on white; this drops the white */
+}
+
+.proj-lede {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--ink);
+  opacity: 0.82;
+}
+
+.proj-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 2rem;
+  margin: 0.25rem 0 0;
+}
+
+.proj-facts dt {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.2rem;
+}
+
+.proj-facts dd {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.proj-more {
+  width: 100%;
+  border-top: 1px solid var(--hairline);
+  padding-top: 0.75rem;
+}
+
+.proj-more summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.3s ease;
+}
+
+.proj-more summary::-webkit-details-marker { display: none; }
+
+.proj-more summary::after {
+  content: '+';
+  font-size: 0.85rem;
+  color: var(--accent);
+  transition: transform 0.3s ease;
+}
+
+.proj-more[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.proj-more summary:hover {
+  color: var(--ink);
+}
+
+.proj-more p {
+  margin: 0.75rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.proj-link {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--ink);
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 0.15rem;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.proj-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.proj-link span {
+  display: inline-block;
+  color: var(--accent);
+  transition: transform 0.3s ease;
+}
+
+.proj-link:hover span {
+  transform: translate(2px, -2px);
+}
+
+/* media column */
+.proj-media {
+  margin: 0;
+  min-width: 0;
+}
+
+.proj-shot {
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  border-radius: 6px;
+  align-self: start;
+}
+
+.proj-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.proj:hover .proj-shot img {
+  transform: scale(1.02);
+}
+
+.proj-phones {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-self: start;
+}
+
+.proj-phones img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 780 / 1300;
+  object-fit: cover;
+  object-position: top;
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.proj:hover .proj-phones img:nth-child(2) {
+  transform: translateY(-6px);
+}
+
+/* a number standing in for a picture, set like the hero name */
+.proj-figure {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.6rem;
+  align-self: center;
+  padding-left: clamp(0rem, 3vw, 2.5rem);
+  border-left: 1px solid var(--hairline);
+}
+
+.proj-big {
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 200;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.proj-figure figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (max-width: 1000px) {
+  .proj,
+  .proj.has-media {
+    grid-template-columns: 9rem minmax(0, 1fr);
+  }
+
+  .proj-media {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .proj,
+  .proj.has-media {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .proj-media { grid-column: auto; }
+
+  .proj-meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.9rem;
+  }
+
+  .proj-status { margin-top: 0; }
+
+  .proj-figure {
+    border-left: none;
+    border-top: 1px solid var(--hairline);
+    padding: 1.25rem 0 0;
+  }
+
+  .proj-phones { gap: 0.5rem; }
+  .proj-phones img { border-radius: 10px; }
+}
+
+@media (hover: none) {
+  .proj:hover .proj-shot img,
+  .proj:hover .proj-phones img:nth-child(2) { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proj-shot img,
+  .proj-phones img,
+  .proj-link span,
+  .proj-more summary::after { transition: none; }
+  .proj:hover .proj-shot img,
+  .proj:hover .proj-phones img:nth-child(2) { transform: none; }
+}
+
+/* --- Contact: the page's closing note ------------------------------ */
+
+.contact {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: clamp(3rem, 7vw, 5rem) clamp(1.25rem, 4vw, 3rem) clamp(4rem, 9vw, 7rem);
+}
+
+.contact-inner {
+  padding-top: clamp(2.5rem, 6vw, 4.5rem);
+  border-top: 1px solid var(--hairline);
+}
+
+.contact-heading {
+  margin: 0 0 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.contact-lede {
+  max-width: 44rem;
+  margin: 0 0 2rem;
+  font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.contact-mail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.75rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.contact-mail a {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 400;
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 0.15rem;
+  overflow-wrap: anywhere;
+}
+
+.contact-mail a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.contact-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.75rem;
+}
+
+.contact-links a {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0.35rem 0;
+}
+
+.contact-links a span {
+  color: var(--accent);
+}
+
+.contact-links a:hover {
+  color: var(--ink);
+}
+
+/* contact sits right above the footer; footer email is redundant now */
+.contact ~ .site-footer .footer-mail {
+  display: none;
+}
+
+/* --- Phones: top bar fits on one line ------------------------------ */
+
+@media (max-width: 480px) {
+  .topbar--over {
+    flex-wrap: nowrap;
+  }
+
+  .topbar--over .topbar-icons {
+    display: none; /* every profile is one tap away in Contact */
+  }
+
+  .topbar-nav {
+    gap: 1.1rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* --- About page refinements ---------------------------------------- */
+
+.about2 picture { display: contents; }
+
+.about2-me {
+  width: min(86%, 72vh);
+  max-height: 92%;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+.about-links {
+  margin-top: 2rem;
+}
+
+.topbar-nav a[aria-current="page"] {
+  color: var(--ink);
+}
+
+@media (max-width: 760px) {
+  .about2-me {
+    width: auto;
+    height: 92%;
+    max-width: 100%;
+  }
+}
+
+/* the photo is wide enough to cover this label on the about page */
+.about2 .f4 { display: none; }

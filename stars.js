@@ -8,7 +8,10 @@
   const ctx = canvas.getContext('2d');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const COUNT = 90;
+  // ~80% fewer than before (was 90): enough to keep the page alive,
+  // few enough that nothing competes with the words
+  const phone = window.matchMedia('(max-width: 760px)').matches;
+  const COUNT = phone ? 12 : 18;
   let stars = [];
   let w = 0;
   let h = 0;
@@ -31,11 +34,11 @@
     stars = Array.from({ length: COUNT }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
-      r: Math.random() * 2.1 + 1.1,
-      // visible drift — roughly 20-45px a second across the page
-      vx: (Math.random() - 0.5) * 1.3,
-      vy: (Math.random() - 0.5) * 1.3,
-      base: Math.random() * 0.4 + 0.22,
+      r: Math.random() * 1.4 + 0.9,
+      // slow drift, a few px a second
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      base: Math.random() * 0.18 + 0.12,
       phase: Math.random() * Math.PI * 2,
       twinkle: Math.random() * 0.0035 + 0.0012,
     }));
@@ -69,9 +72,9 @@
 
       const alpha = reduceMotion
         ? s.base
-        : s.base + Math.sin(t * s.twinkle + s.phase) * 0.3;
+        : s.base + Math.sin(t * s.twinkle + s.phase) * 0.1;
 
-      ctx.globalAlpha = Math.max(0.06, Math.min(0.85, alpha));
+      ctx.globalAlpha = Math.max(0.04, Math.min(0.35, alpha));
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
       ctx.fill();
@@ -81,8 +84,17 @@
   }
 
   function frame(t) {
-    draw(t);
+    if (!document.hidden) draw(t);
     requestAnimationFrame(frame);
+  }
+
+  /* Content sections get a quieter sky: once the hero (or the about photo)
+     is off screen, the field fades most of the way out. */
+  const hero = document.querySelector('.intro, .about2-left');
+  if (hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => {
+      canvas.classList.toggle('is-quiet', !e.isIntersecting);
+    }, { threshold: 0.15 }).observe(hero);
   }
 
   resize();

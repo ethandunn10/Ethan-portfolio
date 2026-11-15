@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Ethan Dunn</title>
+  <meta name="description" content="Ethan Dunn — student, creator, and entrepreneur building businesses, digital products, and content.">
+  <meta name="theme-color" content="#f7f4ee">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" type="image/avif" imagesrcset="img/ethan-hero-800.avif 800w, img/ethan-hero.avif 1560w" imagesizes="(max-width: 760px) 100vw, 58vh">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script>
     // reveals only hide things when JS is alive to bring them back
@@ -20,9 +24,10 @@
   <header class="topbar topbar--over">
     <a href="index.html" class="wordmark">Ethan</a>
     <div class="topbar-right">
-      <nav class="topbar-nav">
-        <a href="index.html">Home</a>
+      <nav class="topbar-nav" aria-label="Main">
+        <a href="#work">Work</a>
         <a href="about.html">About</a>
+        <a href="#contact">Contact</a>
       </nav>
       <div class="topbar-icons">
         <a href="https://www.instagram.com/ethandunnofficial/" target="_blank" rel="noopener" class="icon-link" aria-label="Instagram">
@@ -68,16 +73,21 @@
   </header>
 
   <section class="intro" aria-label="Ethan Dunn">
-    <div class="ticker" aria-label="Founder, builder, student, content creator, athlete">
-      <div class="ticker-track" aria-hidden="true">
-      <span>FOUNDER &#10022; BUILDER &#10022; STUDENT &#10022; CONTENT CREATOR &#10022; ATHLETE &#10022;&nbsp;</span><span>FOUNDER &#10022; BUILDER &#10022; STUDENT &#10022; CONTENT CREATOR &#10022; ATHLETE &#10022;&nbsp;</span><span>FOUNDER &#10022; BUILDER &#10022; STUDENT &#10022; CONTENT CREATOR &#10022; ATHLETE &#10022;&nbsp;</span><span>FOUNDER &#10022; BUILDER &#10022; STUDENT &#10022; CONTENT CREATOR &#10022; ATHLETE &#10022;&nbsp;</span>
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>FOUNDER &#10022; BUILDER &#10022; STUDENT &#10022; CONTENT CREATOR &#10022; ATHLETE &#10022;&nbsp;</span><span>FOUNDER &#10022; BUILDER &#10022; STUDENT &#10022; CONTENT CREATOR &#10022; ATHLETE &#10022;&nbsp;</span><span>FOUNDER &#10022; BUILDER &#10022; STUDENT &#10022; CONTENT CREATOR &#10022; ATHLETE &#10022;&nbsp;</span><span>FOUNDER &#10022; BUILDER &#10022; STUDENT &#10022; CONTENT CREATOR &#10022; ATHLETE &#10022;&nbsp;</span>
+      </div>
     </div>
-  </div>
     <h1 class="intro-name" aria-label="Ethan Dunn">
       <span class="intro-word intro-word--l" aria-hidden="true"><span class="ch" style="--i:0">E</span><span class="ch" style="--i:1">T</span><span class="ch" style="--i:2">H</span><span class="ch" style="--i:3">A</span><span class="ch" style="--i:4">N</span></span>
       <span class="intro-word intro-word--r" aria-hidden="true"><span class="ch" style="--i:5">D</span><span class="ch" style="--i:6">U</span><span class="ch" style="--i:7">N</span><span class="ch" style="--i:8">N</span></span>
     </h1>
-    <img class="intro-me" src="ethan-bust.png" alt="Ethan Dunn" width="802" height="790" fetchpriority="high">
+    <picture>
+      <source type="image/avif" srcset="img/ethan-hero-800.avif 800w, img/ethan-hero.avif 1560w" sizes="(max-width: 760px) 100vw, 58vh">
+      <img class="intro-me" src="img/ethan-hero-800.png" srcset="img/ethan-hero-800.png 800w, img/ethan-hero.png 1560w" sizes="(max-width: 760px) 100vw, 58vh" alt="Ethan Dunn" width="1560" height="1740" fetchpriority="high" decoding="async">
+    </picture>
+    <!-- previous hero photo, kept in case you want to switch back:
+    <img class="intro-me" src="ethan-bust.png" alt="Ethan Dunn" width="802" height="790"> -->
     <div class="intro-floats" aria-hidden="true">
       <span class="float f1">founder</span>
       <span class="float f2">student</span>
@@ -85,6 +95,7 @@
       <span class="float f4">content creator</span>
       <span class="float f5">athlete</span>
     </div>
+    <p class="intro-lede">I&rsquo;m a student, creator, and entrepreneur building businesses, digital products, and content.</p>
     <div class="band" aria-hidden="true"><div class="ticker-track ticker-track--rev"><span>FOUNDER <i>&#10022;</i> BUILDER <i>&#10022;</i> STUDENT <i>&#10022;</i> CONTENT CREATOR <i>&#10022;</i> ATHLETE <i>&#10022;</i>&nbsp;</span><span>FOUNDER <i>&#10022;</i> BUILDER <i>&#10022;</i> STUDENT <i>&#10022;</i> CONTENT CREATOR <i>&#10022;</i> ATHLETE <i>&#10022;</i>&nbsp;</span><span>FOUNDER <i>&#10022;</i> BUILDER <i>&#10022;</i> STUDENT <i>&#10022;</i> CONTENT CREATOR <i>&#10022;</i> ATHLETE <i>&#10022;</i>&nbsp;</span><span>FOUNDER <i>&#10022;</i> BUILDER <i>&#10022;</i> STUDENT <i>&#10022;</i> CONTENT CREATOR <i>&#10022;</i> ATHLETE <i>&#10022;</i>&nbsp;</span></div></div>
     <a class="intro-scroll" href="#facts" aria-label="Scroll down"><svg viewBox="0 0 24 40" aria-hidden="true"><path d="M12 2v34M3 27l9 9 9-9"/></svg></a>
   </section>
@@ -97,9 +108,6 @@
     <aside id="timeline" class="timeline facts-log" aria-label="Log">
       <h2 class="timeline-heading">Log</h2>
       <ol class="timeline-list">
-        <li class="timeline-next" aria-hidden="true">
-          <time><i>?</i><i>?</i><i>?</i></time>
-        </li>
         <li>
           <time datetime="2026-11-14">11.14.26</time>
           <span>Makes his first money online &mdash; $900 from UGC.</span>
@@ -210,37 +218,41 @@
 
   <section class="statline" id="statline" aria-labelledby="statline-heading">
     <div class="statline-head" data-reveal>
-      <h2 class="statline-heading" id="statline-heading">Stat line</h2>
-      <span class="statline-note">Counted, not rounded</span>
+      <h2 class="statline-heading" id="statline-heading">By the numbers</h2>
+      <span class="statline-note">As of Nov 2026</span>
     </div>
     <dl class="stat-grid">
-      <div class="stat" data-reveal>
-        <dt>Age</dt>
-        <dd data-count="15"><span class="stat-num">15</span><span class="stat-sub">Fifteen, and a few months into any of this.</span></dd>
-      </div>
-      <div class="stat" data-reveal>
-        <dt>Builds shipped</dt>
-        <dd data-count="3"><span class="stat-num">3</span><span class="stat-sub">Startup-idea tool, Kovrio, AirWrite.</span></dd>
-      </div>
-      <div class="stat" data-reveal>
-        <dt>First hackathon</dt>
-        <dd><span class="stat-num">2nd</span><span class="stat-sub">Runner-up at Hack the Track, with AirWrite.</span></dd>
-      </div>
-      <div class="stat" data-reveal>
-        <dt>Paid client work</dt>
-        <dd data-count="2"><span class="stat-num">2</span><span class="stat-sub">Branding for a retired FBI agent, and UGC for Whop.</span></dd>
+      <div class="stat is-standout" data-reveal>
+        <dt>Earned from UGC</dt>
+        <dd data-count="900" data-prefix="$"><span class="stat-num">$900</span><span class="stat-sub">First money made online, making content for Whop.</span></dd>
       </div>
       <div class="stat is-standout" data-reveal>
-        <dt>Biggest video</dt>
-        <dd data-count="120" data-suffix="K"><span class="stat-num">120K</span><span class="stat-sub">Views on his top video on Instagram, and climbing.</span></dd>
+        <dt>Instagram views</dt>
+        <dd data-count="400" data-suffix="K+"><span class="stat-num">400K+</span><span class="stat-sub">In the last 30 days.</span></dd>
       </div>
       <div class="stat" data-reveal>
-        <dt>Math, years ahead</dt>
-        <dd data-count="3" data-prefix="+"><span class="stat-num">+3</span><span class="stat-sub">Placed up three grade levels in Aug 2022.</span></dd>
+        <dt>Kovrio users</dt>
+        <dd data-count="70"><span class="stat-num">70</span><span class="stat-sub">On a free AP study app he built solo.</span></dd>
       </div>
-      <div class="stat is-next" data-reveal>
-        <dt>Up next</dt>
-        <dd><span class="stat-num" aria-hidden="true"><i>?</i><i>?</i><i>?</i></span><span class="stat-sub">Looking for an internship.</span></dd>
+      <div class="stat" data-reveal>
+        <dt>Instagram followers</dt>
+        <dd data-count="4" data-suffix="K"><span class="stat-num">4K</span><span class="stat-sub">Grown from his first post in September.</span></dd>
+      </div>
+      <div class="stat" data-reveal>
+        <dt>Products shipped</dt>
+        <dd data-count="3"><span class="stat-num">3</span><span class="stat-sub">Kovrio, AirWrite, and a startup-idea tool.</span></dd>
+      </div>
+      <div class="stat" data-reveal>
+        <dt>Hack the Track</dt>
+        <dd><span class="stat-num">2nd</span><span class="stat-sub">Runner-up at his first hackathon, with AirWrite.</span></dd>
+      </div>
+      <div class="stat" data-reveal>
+        <dt>Paid client projects</dt>
+        <dd data-count="2"><span class="stat-num">2</span><span class="stat-sub">Branding for a retired FBI agent, and UGC for Whop.</span></dd>
+      </div>
+      <div class="stat" data-reveal>
+        <dt>Biggest video</dt>
+        <dd data-count="120" data-suffix="K"><span class="stat-num">120K</span><span class="stat-sub">Views on his top Instagram video.</span></dd>
       </div>
     </dl>
   </section>
@@ -248,57 +260,185 @@
   <section class="work" id="work" aria-labelledby="work-heading">
     <div class="work-head" data-reveal>
       <h2 class="work-heading" id="work-heading">Work</h2>
-      <span class="work-note">Selected</span>
+      <span class="work-note">07 projects</span>
     </div>
-    <dl class="work-list">
-      <div class="work-item" data-reveal>
-        <dt>UGC</dt>
-        <dd>
-          <span class="work-title">Short-form content for Whop</span>
-          <span class="work-sub">Making user-generated content for Whop since October 2026. First $900 earned in November.</span>
-        </dd>
-      </div>
-      <div class="work-item" data-reveal>
-        <dt>Design</dt>
-        <dd>
-          <span class="work-title">Logo &amp; marketing strategy for a retired FBI agent</span>
-          <span class="work-sub">First paid client project &mdash; brand mark plus the plan to launch it.</span>
-        </dd>
-      </div>
-      <div class="work-item" data-reveal>
-        <dt>Rilo</dt>
-        <dd>
-          <span class="work-title">A screen-time buddy app</span>
-          <span class="work-sub">My next app, for iPhone. Launching soon.</span>
-        </dd>
-      </div>
-      <div class="work-item" data-reveal>
-        <dt>Apps</dt>
-        <dd>
-          <span class="work-title">Kovrio, AirWrite, and a startup-idea tool</span>
-          <span class="work-sub">Three shipped builds, all made with AI. Kovrio has 70 users; AirWrite took runner-up at Hack the Track.</span>
-        </dd>
-      </div>
-      <div class="work-item" data-reveal>
-        <dt>Content</dt>
-        <dd>
-          <span class="work-title">Short-form videos on Instagram</span>
-          <span class="work-sub">4K followers and 400K+ views in the last 30 days.</span>
-        </dd>
-      </div>
-      <div class="work-item is-next" data-reveal>
-        <dt>Brand deals</dt>
-        <dd>
-          <span class="work-title">Paid brand partnerships</span>
-          <span class="work-sub">Full branded videos, not just UGC rates &mdash; first conversations with real brands are underway.</span>
-        </dd>
-      </div>
-    </dl>
 
-    <div class="work-contact" data-reveal>
-      <span class="work-contact-label">Get in touch</span>
-      <a href="mailto:ethanjudgedunn10@gmail.com">ethanjudgedunn10@gmail.com</a>
-      <button type="button" class="copy-mail" data-copy-mail="ethanjudgedunn10@gmail.com">Copy</button>
+    <div class="proj-list">
+
+      <!-- A. Whop UGC -->
+      <article class="proj has-media" data-reveal>
+        <div class="proj-meta">
+          <span class="proj-num">01</span>
+          <span class="proj-cat">UGC &middot; Content</span>
+          <span class="proj-status is-live">Ongoing</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">Short-form UGC for Whop</h3>
+          <p class="proj-lede">Short-form, user-generated videos for Whop. It&rsquo;s my first paid content work, and it&rsquo;s where I made my first money online.</p>
+          <dl class="proj-facts">
+            <div><dt>Role</dt><dd>Creator</dd></div>
+            <div><dt>Since</dt><dd>Oct 2026</dd></div>
+            <div><dt>Client</dt><dd>Whop</dd></div>
+          </dl>
+          <!-- PLACEHOLDER: add your best Whop UGC videos here when you're ready.
+               Drop the .mp4 files in img/ and use, e.g.:
+               <video src="img/whop-ugc-1.mp4" muted playsinline loop preload="none" controls></video> -->
+        </div>
+        <figure class="proj-media proj-figure">
+          <span class="proj-big">$900</span>
+          <figcaption>First money made online &mdash; November 2026.</figcaption>
+        </figure>
+      </article>
+
+      <!-- C. Kovrio -->
+      <article class="proj has-media" data-reveal>
+        <div class="proj-meta">
+          <span class="proj-num">02</span>
+          <span class="proj-cat">Software &middot; AI</span>
+          <span class="proj-status is-live">Live</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">Kovrio</h3>
+          <p class="proj-lede">A free AP practice-quiz app. Students sign in, take quizzes, and their scores, history, and insights save to their account.</p>
+          <dl class="proj-facts">
+            <div><dt>Role</dt><dd>Founder &amp; builder</dd></div>
+            <div><dt>Launched</dt><dd>Sep 2026</dd></div>
+            <div><dt>Users</dt><dd>70</dd></div>
+          </dl>
+          <details class="proj-more">
+            <summary>How I built it</summary>
+            <p>I built Kovrio solo with AI, from the quizzes to accounts and Google sign-in. It reached 50 users in under two months and 70 since, with no ads and a $0 budget.</p>
+          </details>
+          <a class="proj-link" href="https://kovrio.vercel.app" target="_blank" rel="noopener">Open Kovrio <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <figure class="proj-media proj-shot">
+          <picture>
+            <source type="image/avif" srcset="img/kovrio.avif">
+            <img src="img/kovrio.png" alt="Kovrio's sign-in screen: AP practice quizzes" width="880" height="560" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+      </article>
+
+      <!-- E. Rilo -->
+      <article class="proj has-media" data-reveal>
+        <div class="proj-meta">
+          <span class="proj-num">03</span>
+          <span class="proj-cat">iPhone app</span>
+          <span class="proj-status is-next">In development</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">Rilo</h3>
+          <p class="proj-lede">A screen-time buddy for iPhone. Rilo connects with you, rewards you for staying off your phone, and gives you ideas for what to do instead.</p>
+          <dl class="proj-facts">
+            <div><dt>Role</dt><dd>Founder &amp; builder</dd></div>
+            <div><dt>Status</dt><dd>Not launched yet</dd></div>
+          </dl>
+          <a class="proj-link" href="https://rilo.one" target="_blank" rel="noopener">rilo.one <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <figure class="proj-media proj-phones">
+          <img src="img/rilo-home.webp" alt="Rilo home screen" width="780" height="1688" loading="lazy" decoding="async">
+          <img src="img/rilo-plan.webp" alt="Rilo plan screen" width="780" height="1688" loading="lazy" decoding="async">
+          <img src="img/rilo-progress.webp" alt="Rilo progress screen" width="780" height="1688" loading="lazy" decoding="async">
+        </figure>
+      </article>
+
+      <!-- D. AirWrite -->
+      <article class="proj" data-reveal>
+        <div class="proj-meta">
+          <span class="proj-num">04</span>
+          <span class="proj-cat">Software &middot; AI</span>
+          <span class="proj-status">2nd at Hack the Track</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title"><img class="proj-mark" src="img/airwrite-mark.png" alt="" width="256" height="256" loading="lazy">AirWrite</h3>
+          <p class="proj-lede">Write on a blank sheet of paper with your finger and get a real PDF. Built at my first hackathon, where it placed runner-up.</p>
+          <dl class="proj-facts">
+            <div><dt>Role</dt><dd>Builder</dd></div>
+            <div><dt>Built</dt><dd>Sep 2026</dd></div>
+            <div><dt>Result</dt><dd>Runner-up</dd></div>
+          </dl>
+          <details class="proj-more">
+            <summary>How it works</summary>
+            <p>An overhead camera tracks your fingertip and maps it onto a virtual page; a side camera watches how high your finger is to tell when the &ldquo;pen&rdquo; is down. Your strokes export as a true vector PDF, or Claude turns them into typed text. Everything runs in the browser.</p>
+          </details>
+          <a class="proj-link" href="https://github.com/ethandunn10/AirWrite" target="_blank" rel="noopener">View on GitHub <span aria-hidden="true">&#8599;</span></a>
+        </div>
+      </article>
+
+      <!-- F. Social media -->
+      <article class="proj has-media" data-reveal>
+        <div class="proj-meta">
+          <span class="proj-num">05</span>
+          <span class="proj-cat">Content creation</span>
+          <span class="proj-status is-live">Ongoing</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">Short-form videos on Instagram</h3>
+          <p class="proj-lede">Short-form videos on Instagram, posted since September 2026.</p>
+          <dl class="proj-facts">
+            <div><dt>Followers</dt><dd>4K</dd></div>
+            <div><dt>Biggest video</dt><dd>120K views</dd></div>
+          </dl>
+          <a class="proj-link" href="https://www.instagram.com/ethandunnofficial/" target="_blank" rel="noopener">@ethandunnofficial <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <figure class="proj-media proj-figure">
+          <span class="proj-big">400K+</span>
+          <figcaption>Views in the last 30 days.</figcaption>
+        </figure>
+      </article>
+
+      <!-- B. Branding -->
+      <article class="proj" data-reveal>
+        <div class="proj-meta">
+          <span class="proj-num">06</span>
+          <span class="proj-cat">Branding &middot; Client work</span>
+          <span class="proj-status">First paid client</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">Logo &amp; marketing strategy for a retired FBI agent</h3>
+          <p class="proj-lede">My first paid client project: a brand mark, plus the plan to launch it.</p>
+          <dl class="proj-facts">
+            <div><dt>Role</dt><dd>Designer &amp; strategist</dd></div>
+            <div><dt>Delivered</dt><dd>Logo, marketing plan</dd></div>
+            <div><dt>Date</dt><dd>Sep 2026</dd></div>
+          </dl>
+          <!-- PLACEHOLDER: if the client is OK with it, add the logo here, e.g.
+               <img src="img/fbi-client-logo.png" alt="..." loading="lazy"> -->
+        </div>
+      </article>
+
+      <!-- G. Brand partnerships -->
+      <article class="proj" data-reveal>
+        <div class="proj-meta">
+          <span class="proj-num">07</span>
+          <span class="proj-cat">Brand partnerships</span>
+          <span class="proj-status is-next">In progress</span>
+        </div>
+        <div class="proj-body">
+          <h3 class="proj-title">Paid brand partnerships</h3>
+          <p class="proj-lede">Full branded videos, not just UGC rates. First conversations with real brands are underway.</p>
+          <!-- PLACEHOLDER: list partnerships here once they're signed and public. -->
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-heading">
+    <div class="contact-inner" data-reveal>
+      <h2 class="contact-heading" id="contact-heading">Contact</h2>
+      <p class="contact-lede">Got a project, an opportunity, or an idea? I&rsquo;m open to collaborations, internships, and business &mdash; reach out.</p>
+      <div class="contact-mail">
+        <a href="mailto:ethanjudgedunn10@gmail.com">ethanjudgedunn10@gmail.com</a>
+        <button type="button" class="copy-mail" data-copy-mail="ethanjudgedunn10@gmail.com">Copy</button>
+      </div>
+      <ul class="contact-links">
+        <li><a href="https://www.linkedin.com/in/ethan-dunn-ab45ab425" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://www.instagram.com/ethandunnofficial/" target="_blank" rel="noopener">Instagram <span aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://www.youtube.com/@ethan_dunn" target="_blank" rel="noopener">YouTube <span aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://x.com/EthanJDunn" target="_blank" rel="noopener">X <span aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://github.com/ethandunn10" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&#8599;</span></a></li>
+      </ul>
     </div>
   </section>
 

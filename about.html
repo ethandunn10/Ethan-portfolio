@@ -4,9 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About &mdash; Ethan Dunn</title>
+  <meta name="description" content="About Ethan Dunn: student, founder, builder, and content creator.">
+  <meta name="theme-color" content="#f7f4ee">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script>
     // the line-by-line reveal only hides text when JS is alive to show it
@@ -21,8 +24,9 @@
     <a href="index.html" class="wordmark">Ethan</a>
     <div class="topbar-right">
       <nav class="topbar-nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
+        <a href="index.html#work">Work</a>
+        <a href="about.html" aria-current="page">About</a>
+        <a href="index.html#contact">Contact</a>
       </nav>
       <div class="topbar-icons">
         <a href="https://www.instagram.com/ethandunnofficial/" target="_blank" rel="noopener" class="icon-link" aria-label="Instagram">
@@ -79,7 +83,10 @@
           <span class="float f4">content creator</span>
           <span class="float f5">athlete</span>
         </div>
-        <img class="about2-me" src="ethan-bust.png" alt="Ethan Dunn" width="802" height="790">
+        <picture>
+          <source type="image/avif" srcset="img/ethan-hero-800.avif 800w, img/ethan-hero.avif 1560w" sizes="(max-width: 760px) 100vw, 50vw">
+          <img class="about2-me" src="img/ethan-hero-800.png" srcset="img/ethan-hero-800.png 800w, img/ethan-hero.png 1560w" sizes="(max-width: 760px) 100vw, 50vw" alt="Ethan Dunn" width="1560" height="1740" decoding="async">
+        </picture>
         <div class="band" aria-hidden="true"><div class="ticker-track ticker-track--rev"><span>FOUNDER <i>&#10022;</i> BUILDER <i>&#10022;</i> STUDENT <i>&#10022;</i> CONTENT CREATOR <i>&#10022;</i> ATHLETE <i>&#10022;</i>&nbsp;</span><span>FOUNDER <i>&#10022;</i> BUILDER <i>&#10022;</i> STUDENT <i>&#10022;</i> CONTENT CREATOR <i>&#10022;</i> ATHLETE <i>&#10022;</i>&nbsp;</span><span>FOUNDER <i>&#10022;</i> BUILDER <i>&#10022;</i> STUDENT <i>&#10022;</i> CONTENT CREATOR <i>&#10022;</i> ATHLETE <i>&#10022;</i>&nbsp;</span><span>FOUNDER <i>&#10022;</i> BUILDER <i>&#10022;</i> STUDENT <i>&#10022;</i> CONTENT CREATOR <i>&#10022;</i> ATHLETE <i>&#10022;</i>&nbsp;</span></div></div>
         <span class="monogram about2-badge">ED</span>
       </div>
@@ -90,16 +97,23 @@
           <li>Founder</li><li>Builder</li><li>Student</li><li>Content creator</li><li>Athlete</li>
         </ul>
         <div class="about-body">
-          <p>Hi, I’m Ethan. I’ve always known I wanted to do something great and make a real difference, and I’ve started to back that up.</p>
-          <p>I’m a founder. I grew Kovrio, a free AP study app, to over 70 users, and I’ve now shifted my focus to Rilo. Rilo is a screen-time buddy that actually connects with you, rewards you for staying off your phone, and gives you ideas for what to do instead.</p>
-          <p>I’m a content creator. I grew my Instagram to over 4,000 followers and over 400,000 views in just two months.</p>
-          <p>I’m a builder who grinds Claude Code sessions until I fall asleep. I’m always building something: a new project, a new app, a new tool.</p>
-          <p>I’m a student. As a freshman, I’m taking three AP classes and a dual-credit business class, including a senior-level math class, three years ahead.</p>
-          <p>I’m also an athlete. I’ve played basketball, baseball, golf, and football, and right now I’m focused on basketball and golf. I’ve been playing basketball for over a decade and recently got into golf.</p>
-          <p>I know that if I really want to make a difference, I can’t do it alone. Jesus is more important than anything to me. My favorite Bible verse is Philippians 4:13: “I can do all things through Christ who strengthens me.”</p>
-          <p>My email is below, and I’m always open to connecting, so reach out!</p>
+          <p>Hi, I&rsquo;m Ethan. I&rsquo;m 15, I&rsquo;m a freshman, and I like building things people actually use.</p>
+          <p>I&rsquo;m a founder. I grew Kovrio, a free AP study app, to 70 users with no ads and no budget. Now I&rsquo;m focused on Rilo, a screen-time buddy for iPhone that connects with you, rewards you for staying off your phone, and gives you ideas for what to do instead.</p>
+          <p>I&rsquo;m a builder who grinds Claude Code sessions until I fall asleep. I&rsquo;m always working on something: a new app, a new tool, a new idea. At my first hackathon, my project AirWrite took second place.</p>
+          <p>I&rsquo;m a content creator. My Instagram has 4,000 followers and over 400,000 views in the last 30 days. I also make UGC for Whop, which is how I made my first $900 online.</p>
+          <p>I&rsquo;m a student. I&rsquo;m taking three AP classes and a dual-credit business class, including a math class three years ahead, and I&rsquo;m in FBLA.</p>
+          <p>I&rsquo;m an athlete, too. I&rsquo;ve played basketball for over a decade, and I recently got into golf.</p>
+          <p>Jesus is more important to me than anything. My favorite verse is Philippians 4:13: &ldquo;I can do all things through Christ who strengthens me.&rdquo;</p>
+          <p>If you&rsquo;re working on something interesting, or you think we should build something together, I&rsquo;d like to hear about it.</p>
           <p><a class="about-mail" href="mailto:ethanjudgedunn10@gmail.com">ethanjudgedunn10@gmail.com</a></p>
         </div>
+        <ul class="contact-links about-links">
+          <li><a href="https://www.linkedin.com/in/ethan-dunn-ab45ab425" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">&#8599;</span></a></li>
+          <li><a href="https://www.instagram.com/ethandunnofficial/" target="_blank" rel="noopener">Instagram <span aria-hidden="true">&#8599;</span></a></li>
+          <li><a href="https://www.youtube.com/@ethan_dunn" target="_blank" rel="noopener">YouTube <span aria-hidden="true">&#8599;</span></a></li>
+          <li><a href="https://x.com/EthanJDunn" target="_blank" rel="noopener">X <span aria-hidden="true">&#8599;</span></a></li>
+          <li><a href="https://github.com/ethandunn10" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&#8599;</span></a></li>
+        </ul>
         <p class="about2-sign" aria-hidden="true">Ethan Dunn &#10022; ED &#10022; 2026</p>
       </div>
     </section>

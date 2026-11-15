@@ -25,7 +25,7 @@
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, phone ? 1.5 : 2));
 
   const sphere = new THREE.LineSegments(
-    new THREE.WireframeGeometry(new THREE.SphereGeometry(1.2, phone ? 18 : 22, phone ? 12 : 16)),
+    new THREE.WireframeGeometry(new THREE.SphereGeometry(1.08, phone ? 18 : 22, phone ? 12 : 16)),
     new THREE.LineBasicMaterial({ color: new THREE.Color(accent), transparent: true, opacity: 0.8 })
   );
   sphere.rotation.x = 0.35;
