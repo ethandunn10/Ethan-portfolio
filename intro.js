@@ -1,6 +1,6 @@
 /* Home page top half: the sticky sphere section.
    While the section is pinned, scroll progress picks which fact shows on the
-   sphere, spins the sphere (hero.js) and rolls the Log down with it.
+   sphere and spins the sphere (hero.js).
    The opening screen and the ticker are pure CSS. Wrapped in an IIFE so nothing lands in the global scope. */
 (() => {
   const root = document.documentElement;
@@ -11,7 +11,6 @@
 
   const facts = [...document.querySelectorAll('.fact')];
   const dots = [...document.querySelectorAll('.fact-dots i')];
-  const log = document.querySelector('.facts-log');
 
   /* Reduce motion: no pinning, no swapping. Every fact is listed at once. */
   if (reduceMotion) {
@@ -39,9 +38,6 @@
     const p = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
     setActive(Math.min(facts.length - 1, Math.floor(p * facts.length)));
     if (window.__sphereProgress) window.__sphereProgress(p);
-
-    // the Log rolls down in step with the sphere
-    if (log) log.scrollTop = p * (log.scrollHeight - log.clientHeight);
   }
 
   function onScroll() {
@@ -54,4 +50,22 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
   update();
+})();
+
+/* Latest section: show the 6 newest Log items, "See full log" expands the rest in place.
+   Without JS the whole list is simply shown. */
+(() => {
+  const list = document.getElementById('log-list');
+  const btn = document.querySelector('.log-more');
+  if (!list || !btn) return;
+
+  list.classList.add('is-collapsed');
+  btn.hidden = false;
+
+  btn.addEventListener('click', () => {
+    const open = list.classList.toggle('is-collapsed') === false;
+    btn.setAttribute('aria-expanded', String(open));
+    btn.innerHTML = open ? 'Show less &uarr;' : 'See full log &rarr;';
+    if (!open) list.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  });
 })();
