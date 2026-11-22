@@ -3,7 +3,7 @@
   --black: #000000;
   --white: #FFFFFF;
   --pad: 24px;
-  --max: 1120px;
+  --max: 1240px;
   --section: 128px;
 }
 
@@ -149,12 +149,12 @@ p { margin: 0; }
 .hero { padding: 96px 0 var(--section); }
 .hero .wrap {
   display: grid;
-  grid-template-columns: 1.7fr 1fr;
+  grid-template-columns: minmax(0, 1fr) 400px;
   gap: 56px;
   align-items: center;
 }
 .hero h1 {
-  font-size: clamp(40px, 5.6vw, 80px);
+  font-size: clamp(40px, 5vw, 70px);
   letter-spacing: -0.045em;
   line-height: 1;
 }
@@ -167,12 +167,22 @@ p { margin: 0; }
 }
 .hero-actions { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 16px; }
 .hero-photo {
+  position: relative;
   margin: 0;
   border: 2px solid var(--black);
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 2 / 3;
   overflow: hidden;
 }
-.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+/* Crop: bottom edge stops at the knees, sides trimmed so the frame is tall.
+   Tuned for public/me.jpg (768x1024); retune if the photo changes. */
+.hero-photo img {
+  position: absolute;
+  top: 0;
+  left: -26%;
+  height: 120%;
+  width: auto;
+  max-width: none;
+}
 
 /* ---------- Proof bar ---------- */
 .proof { border-top: 1px solid var(--black); border-bottom: 1px solid var(--black); }
@@ -329,7 +339,7 @@ p { margin: 0; }
   .hero { padding-top: 48px; }
   .hero .wrap,
   .about-hero .wrap { grid-template-columns: 1fr; gap: 40px; }
-  .hero-photo { max-width: 420px; }
+  .hero-photo { max-width: 480px; }
   .hero-sub { font-size: 19px; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { width: 100%; }
