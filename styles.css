@@ -174,7 +174,7 @@ p { margin: 0; }
   overflow: hidden;
 }
 /* Crop: bottom edge stops at the knees, sides trimmed so the frame is tall.
-   Tuned for public/me.jpg (768x1024); retune if the photo changes. */
+   Tuned for assets/me.jpg (768x1024); retune if the photo changes. */
 .hero-photo img {
   position: absolute;
   top: 0;
