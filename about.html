@@ -2,132 +2,176 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>About &mdash; Ethan Dunn</title>
-  <meta name="description" content="About Ethan Dunn: student, founder, builder, and content creator.">
-  <meta name="theme-color" content="#f7f4ee">
+  <meta name="description" content="About Ethan Dunn, plus the full Log of everything so far.">
+  <meta name="theme-color" content="#FFFFFF">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="public/logo-mark-black.png" type="image/png">
   <link rel="stylesheet" href="styles.css">
-  <script>
-    // the line-by-line reveal only hides text when JS is alive to show it
-    document.documentElement.classList.add('js');
-  </script>
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <canvas id="stars" aria-hidden="true"></canvas>
-
-  <header class="topbar">
-    <a href="index.html" class="wordmark">Ethan</a>
-    <div class="topbar-right">
-      <nav class="topbar-nav">
-        <a href="index.html#work">Work</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="brand">
+        <img src="public/logo-mark-black.png" alt="" width="28" height="28">
+        Ethan Dunn
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="index.html#building">Building</a>
+        <a href="index.html#highlights">Highlights</a>
+        <a href="index.html#work-with-me">Work with me</a>
         <a href="about.html" aria-current="page">About</a>
-        <a href="index.html#contact">Contact</a>
       </nav>
-      <div class="topbar-icons">
-        <a href="https://www.instagram.com/ethandunnofficial/" target="_blank" rel="noopener" class="icon-link" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="5" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="12" cy="12" r="4" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/>
-          </svg>
-        </a>
-        <a href="https://www.linkedin.com/in/ethan-dunn-ab45ab425" target="_blank" rel="noopener" class="icon-link" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="4" stroke-linejoin="round"/>
-            <circle cx="7.5" cy="7.2" r="0.9" fill="currentColor" stroke="none"/>
-            <line x1="7.5" y1="10.2" x2="7.5" y2="16.5" stroke-linecap="round"/>
-            <path d="M11.3 16.5v-3.6c0-1.7 1.1-2.6 2.4-2.6s2.3.9 2.3 2.6v3.6" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="11.3" y1="10.2" x2="11.3" y2="16.5" stroke-linecap="round"/>
-          </svg>
-        </a>
-        <a href="https://www.youtube.com/@ethan_dunn" target="_blank" rel="noopener" class="icon-link" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <rect x="2" y="5" width="20" height="14" rx="4" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M10 9.2l5.5 2.8-5.5 2.8V9.2z" fill="currentColor" stroke="none"/>
-          </svg>
-        </a>
-        <a href="https://github.com/ethandunn10" target="_blank" rel="noopener" class="icon-link" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49v-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .83-.27 2.75 1.05a9.4 9.4 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9v2.81c0 .27.18.6.69.49A10.06 10.06 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/>
-          </svg>
-        </a>
-        <a href="mailto:ethanjudgedunn10@gmail.com" class="icon-link" aria-label="Email Ethan">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <rect x="2.5" y="5" width="19" height="14" rx="3" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M4 7.5l8 5.5 8-5.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
     </div>
   </header>
 
-  <main class="about-main about-v2">
+  <main id="main">
 
-    <section id="about" class="about about2">
-      <div class="about2-left">
-        <span class="about2-mono" aria-hidden="true">ED</span>
-        <div class="intro-floats" aria-hidden="true">
-          <span class="float f1">founder</span>
-          <span class="float f2">student</span>
-          <span class="float f3">builder</span>
-          <span class="float f4">content creator</span>
-          <span class="float f5">athlete</span>
+    <section class="about-hero" aria-labelledby="about-title">
+      <div class="wrap">
+        <figure class="hero-photo">
+          <img src="public/me.jpg" alt="Ethan Dunn" width="768" height="1024">
+        </figure>
+        <div>
+          <h1 id="about-title">Who is Ethan Dunn?</h1>
+          <div class="about-body">
+            <p>Hi, I&rsquo;m Ethan. I&rsquo;m 15, I&rsquo;m a freshman, and I like building things people actually use.</p>
+            <p>I&rsquo;m a founder. I grew Kovrio, a free AP study app, to 70 users with no ads and no budget. Now I&rsquo;m focused on Rilo, a screen-time buddy for iPhone that connects with you, rewards you for staying off your phone, and gives you ideas for what to do instead.</p>
+            <p>I&rsquo;m a builder who grinds Claude Code sessions until I fall asleep. I&rsquo;m always working on something: a new app, a new tool, a new idea. At my first hackathon, my project AirWrite took second place.</p>
+            <p>I&rsquo;m a content creator. My Instagram has 4,000 followers and over 400,000 views in the last 30 days. I also make UGC for Whop, which is how I made my first dollar online.</p>
+            <p>I&rsquo;m a student. I&rsquo;m taking three AP classes and a dual-credit business class, including a math class three years ahead, and I&rsquo;m in FBLA.</p>
+            <p>I&rsquo;m an athlete, too. I&rsquo;ve played basketball for over a decade, and I recently got into golf.</p>
+            <p>Jesus is more important to me than anything. My favorite verse is Philippians 4:13: &ldquo;I can do all things through Christ who strengthens me.&rdquo;</p>
+            <p>If you&rsquo;re working on something interesting, or you think we should build something together, I&rsquo;d like to hear about it.</p>
+            <p><a class="mail-link" href="mailto:ethanjudgedunn10@gmail.com">ethanjudgedunn10@gmail.com</a></p>
+          </div>
         </div>
-        <picture>
-          <source type="image/avif" srcset="img/ethan-hero-800.avif 800w, img/ethan-hero.avif 1560w" sizes="(max-width: 760px) 100vw, 50vw">
-          <img class="about2-me" src="img/ethan-hero-800.png" srcset="img/ethan-hero-800.png 800w, img/ethan-hero.png 1560w" sizes="(max-width: 760px) 100vw, 50vw" alt="Ethan Dunn" width="1560" height="1740" decoding="async">
-        </picture>
-        <div class="band" aria-hidden="true"><div class="ticker-track ticker-track--rev"><span>FOUNDER <i>&#10022;</i> BUILDER <i>&#10022;</i> STUDENT <i>&#10022;</i> CONTENT CREATOR <i>&#10022;</i> ATHLETE <i>&#10022;</i>&nbsp;</span><span>FOUNDER <i>&#10022;</i> BUILDER <i>&#10022;</i> STUDENT <i>&#10022;</i> CONTENT CREATOR <i>&#10022;</i> ATHLETE <i>&#10022;</i>&nbsp;</span><span>FOUNDER <i>&#10022;</i> BUILDER <i>&#10022;</i> STUDENT <i>&#10022;</i> CONTENT CREATOR <i>&#10022;</i> ATHLETE <i>&#10022;</i>&nbsp;</span><span>FOUNDER <i>&#10022;</i> BUILDER <i>&#10022;</i> STUDENT <i>&#10022;</i> CONTENT CREATOR <i>&#10022;</i> ATHLETE <i>&#10022;</i>&nbsp;</span></div></div>
-        <span class="monogram about2-badge">ED</span>
       </div>
+    </section>
 
-      <div class="about2-right">
-        <h1>Who is Ethan Dunn?</h1>
-        <ul class="about2-tags" aria-label="What I do">
-          <li>Founder</li><li>Builder</li><li>Student</li><li>Content creator</li><li>Athlete</li>
-        </ul>
-        <div class="about-body">
-          <p>Hi, I&rsquo;m Ethan. I&rsquo;m 15, I&rsquo;m a freshman, and I like building things people actually use.</p>
-          <p>I&rsquo;m a founder. I grew Kovrio, a free AP study app, to 70 users with no ads and no budget. Now I&rsquo;m focused on Rilo, a screen-time buddy for iPhone that connects with you, rewards you for staying off your phone, and gives you ideas for what to do instead.</p>
-          <p>I&rsquo;m a builder who grinds Claude Code sessions until I fall asleep. I&rsquo;m always working on something: a new app, a new tool, a new idea. At my first hackathon, my project AirWrite took second place.</p>
-          <p>I&rsquo;m a content creator. My Instagram has 4,000 followers and over 400,000 views in the last 30 days. I also make UGC for Whop, which is how I made my first dollar online.</p>
-          <p>I&rsquo;m a student. I&rsquo;m taking three AP classes and a dual-credit business class, including a math class three years ahead, and I&rsquo;m in FBLA.</p>
-          <p>I&rsquo;m an athlete, too. I&rsquo;ve played basketball for over a decade, and I recently got into golf.</p>
-          <p>Jesus is more important to me than anything. My favorite verse is Philippians 4:13: &ldquo;I can do all things through Christ who strengthens me.&rdquo;</p>
-          <p>If you&rsquo;re working on something interesting, or you think we should build something together, I&rsquo;d like to hear about it.</p>
-          <p><a class="about-mail" href="mailto:ethanjudgedunn10@gmail.com">ethanjudgedunn10@gmail.com</a></p>
-        </div>
-        <ul class="contact-links about-links">
-          <li><a href="https://www.linkedin.com/in/ethan-dunn-ab45ab425" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">&#8599;</span></a></li>
-          <li><a href="https://www.instagram.com/ethandunnofficial/" target="_blank" rel="noopener">Instagram <span aria-hidden="true">&#8599;</span></a></li>
-          <li><a href="https://www.youtube.com/@ethan_dunn" target="_blank" rel="noopener">YouTube <span aria-hidden="true">&#8599;</span></a></li>
-          <li><a href="https://github.com/ethandunn10" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&#8599;</span></a></li>
-          <li><a href="https://beacons.ai/ethandunn/mediakit" target="_blank" rel="noopener">Media kit <span aria-hidden="true">&#8599;</span></a></li>
-        </ul>
-        <p class="about2-sign" aria-hidden="true">Ethan Dunn &#10022; ED &#10022; 2026</p>
+    <section class="section" id="log" aria-labelledby="log-title">
+      <div class="wrap">
+        <p class="section-label">The Log</p>
+        <h2 class="section-title" id="log-title">Everything so far.</h2>
+        <ol class="log">
+          <li>
+            <time datetime="2026-11-17">11.17.26</time>
+            <span>Posts his first long-form YouTube video.</span>
+          </li>
+          <li>
+            <time datetime="2026-11-14">11.14.26</time>
+            <span>Makes his first dollar online from UGC.</span>
+          </li>
+          <li>
+            <time datetime="2026-11-06">11.06.26</time>
+            <span>Publishes his first article &mdash; <i>Your Potential is Quietly Leaking</i>.</span>
+          </li>
+          <li>
+            <time datetime="2026-10-27">10.27.26</time>
+            <span>Kovrio passes 50 users.</span>
+          </li>
+          <li>
+            <time datetime="2026-10-24">10.24.26</time>
+            <span>Hits 1,000 followers on Instagram.</span>
+          </li>
+          <li>
+            <time datetime="2026-10-20">10.20.26</time>
+            <span>Makes his first short film &mdash; <i>Log Off</i>.</span>
+          </li>
+          <li>
+            <time datetime="2026-10-09">10.09.26</time>
+            <span>Starts making UGC with Whop.</span>
+          </li>
+          <li>
+            <time datetime="2026-09-27">09.27.26</time>
+            <span>Designs a logo and marketing strategy for a retired FBI agent.</span>
+          </li>
+          <li>
+            <time datetime="2026-09-12">09.12.26</time>
+            <span>Builds AirWrite and places runner-up at Hack the Track &mdash; his first hackathon.</span>
+          </li>
+          <li>
+            <time datetime="2026-09-11">09.11.26</time>
+            <span>Builds his first portfolio site.</span>
+          </li>
+          <li>
+            <time datetime="2026-09-09">09.09.26</time>
+            <span>Posts his first video on Instagram.</span>
+          </li>
+          <li>
+            <time datetime="2026-09-05">09.05.26</time>
+            <span>Launches Kovrio &mdash; his first shipped, live app.</span>
+          </li>
+          <li>
+            <time datetime="2026-08-07">08.07.26</time>
+            <span>Meets Nate Royal, the founder of Due Gooder.</span>
+          </li>
+          <li>
+            <time datetime="2026-07-23">07.23.26</time>
+            <span>Deploys his first real app &mdash; a startup-idea tool.</span>
+          </li>
+          <li>
+            <time datetime="2026-07">July 2026</time>
+            <span>Starts playing golf.</span>
+          </li>
+          <li>
+            <time datetime="2026-06-07">06.07.26</time>
+            <span>Wins the Kentucky AAA baseball state tournament.</span>
+          </li>
+          <li>
+            <time datetime="2026-06">June 2026</time>
+            <span>Gets into startups and building apps.</span>
+          </li>
+          <li>
+            <time datetime="2026-05">May 2026</time>
+            <span>Wins STLP state in the Minecraft division.</span>
+          </li>
+          <li>
+            <time datetime="2023-08-13">08.13.23</time>
+            <span>Starts playing the trumpet.</span>
+          </li>
+          <li>
+            <time datetime="2022-11">Late 2022</time>
+            <span>Solves his first Rubik&rsquo;s Cube.</span>
+          </li>
+          <li>
+            <time datetime="2022-08">Aug 2022</time>
+            <span>Starts a math class three years ahead of grade level.</span>
+          </li>
+          <li>
+            <time datetime="2014">2014</time>
+            <span>Starts playing basketball and baseball.</span>
+          </li>
+          <li>
+            <time datetime="2011-09-06">09.06.11</time>
+            <span>Ethan is born.</span>
+          </li>
+        </ol>
       </div>
     </section>
 
   </main>
 
   <footer class="site-footer">
-    <div class="footer-left">
-      <span class="monogram">ED</span>
-      <span class="copyright">&copy; <span id="year"></span> <a href="index.html">Ethan Dunn</a></span>
-    </div>
-    <div class="footer-right">
-      <a class="footer-mail" href="mailto:ethanjudgedunn10@gmail.com">ethanjudgedunn10@gmail.com</a>
-      <span id="ethan-time" class="ethan-time"></span>
+    <div class="wrap">
+      <span class="footer-brand">
+        <img src="public/logo-mark-white.png" alt="" width="32" height="32">
+        Not Dunn Yet.
+      </span>
+      <ul class="footer-links">
+        <li><a href="https://www.instagram.com/ethanjdunn/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.youtube.com/@ethanjdunn" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://www.linkedin.com/in/ethanjdunn" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
     </div>
   </footer>
 
   <script src="script.js"></script>
-  <script src="stars.js"></script>
-  <script src="about.js"></script>
 </body>
 </html>
