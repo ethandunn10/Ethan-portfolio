@@ -14,6 +14,17 @@
   <link rel="shortcut icon" href="favicon.ico?v=6">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=6">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    /* Motion on unless the visitor asked for less. If motion.js never runs
+       (blocked, offline), drop the class so nothing stays hidden. */
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var d = document.documentElement;
+      d.classList.add('motion');
+      setTimeout(function () { if (!window.__motion) d.classList.remove('motion'); }, 2500);
+    })();
+  </script>
+  <link rel="modulepreload" href="assets/js/motion-mini-11.18.2.js">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -57,6 +68,12 @@
         </figure>
       </div>
     </section>
+
+    <!-- 2b. Marquee -->
+    <div class="marquee">
+      <p class="sr-only">Builder. Grower. Not Dunn Yet.</p>
+      <div class="marquee-track" aria-hidden="true"><span class="marquee-group"><span>BUILDER &bull; GROWER &bull; NOT DUNN YET &bull;</span><span>BUILDER &bull; GROWER &bull; NOT DUNN YET &bull;</span><span>BUILDER &bull; GROWER &bull; NOT DUNN YET &bull;</span><span>BUILDER &bull; GROWER &bull; NOT DUNN YET &bull;</span><span>BUILDER &bull; GROWER &bull; NOT DUNN YET &bull;</span><span>BUILDER &bull; GROWER &bull; NOT DUNN YET &bull;</span></span><span class="marquee-group"><span>BUILDER &bull; GROWER &bull; NOT DUNN YET &bull;</span><span>BUILDER &bull; GROWER &bull; NOT DUNN YET &bull;</span><span>BUILDER &bull; GROWER &bull; NOT DUNN YET &bull;</span><span>BUILDER &bull; GROWER &bull; NOT DUNN YET &bull;</span><span>BUILDER &bull; GROWER &bull; NOT DUNN YET &bull;</span><span>BUILDER &bull; GROWER &bull; NOT DUNN YET &bull;</span></span></div>
+    </div>
 
     <!-- 3. Proof bar -->
     <section class="proof" aria-label="By the numbers">
@@ -199,5 +216,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script type="module" src="motion.js"></script>
 </body>
 </html>

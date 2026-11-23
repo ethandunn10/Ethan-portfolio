@@ -90,13 +90,10 @@ p { margin: 0; }
 
 .nav { display: flex; gap: 32px; }
 .nav a {
-  text-decoration: none;
   font-size: 16px;
   padding: 6px 0;
-  border-bottom: 2px solid transparent;
 }
-.nav a:hover,
-.nav a[aria-current="page"] { border-bottom-color: var(--black); }
+.nav a[aria-current="page"] { background-size: 100% 2px; }
 
 .nav-toggle {
   display: none;
@@ -199,7 +196,7 @@ p { margin: 0; }
   border-left: 1px solid var(--black);
 }
 .proof li:first-child { border-left: 0; }
-.proof strong { display: block; font-weight: 800; font-size: 32px; letter-spacing: -0.03em; line-height: 1.1; }
+.proof strong { font-variant-numeric: tabular-nums; display: block; font-weight: 800; font-size: 32px; letter-spacing: -0.03em; line-height: 1.1; }
 
 /* ---------- Building ---------- */
 .card {
@@ -256,7 +253,7 @@ p { margin: 0; }
   font-weight: 800;
   font-size: 16px;
   overflow-wrap: anywhere;
-  text-underline-offset: 4px;
+  padding-bottom: 3px;
 }
 
 /* ---------- About (short) ---------- */
@@ -266,8 +263,7 @@ p { margin: 0; }
   display: inline-block;
   margin-top: 40px;
   font-weight: 800;
-  text-underline-offset: 6px;
-  text-decoration-thickness: 2px;
+  padding-bottom: 4px;
 }
 
 /* ---------- About page ---------- */
@@ -305,8 +301,97 @@ p { margin: 0; }
 .footer-brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; }
 .footer-brand img { width: 32px; height: 32px; }
 .footer-links { list-style: none; margin: 0; padding: 0; display: flex; gap: 32px; flex-wrap: wrap; }
-.footer-links a { text-decoration: none; border-bottom: 2px solid transparent; padding: 4px 0; }
-.footer-links a:hover { border-bottom-color: var(--white); }
+.footer-links a { padding: 4px 0; }
+
+/* ---------- Motion ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Hidden until motion.js plays them in. Only applies with the "motion"
+   class, which reduced-motion visitors (and failed loads) never keep. */
+.motion .hero h1 span,
+.motion .hero-sub,
+.motion .hero-actions,
+.motion .hero-photo,
+.motion .marquee,
+.motion .about-body,
+.motion .about-hero h1,
+.motion .site-header,
+.motion .section-label,
+.motion .section-title,
+.motion .card,
+.motion .highlights li,
+.motion .about-short p,
+.motion .text-link,
+.motion .proof li,
+.motion .log li,
+.motion .site-footer .wrap > * { opacity: 0; }
+.motion .is-in { opacity: 1 !important; }
+
+/* Sliding underline: grows from the left on hover / keyboard focus */
+.nav a,
+.footer-links a,
+.text-link,
+.mail-link {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 2px;
+  transition: background-size 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav a:hover, .nav a:focus-visible,
+.footer-links a:hover, .footer-links a:focus-visible,
+.text-link:hover, .text-link:focus-visible,
+.mail-link:hover, .mail-link:focus-visible { background-size: 100% 2px; }
+
+/* Cards lift, their image scales. Real pointers only, so taps on a phone
+   never leave a card stuck up. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .card {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 4px 0 var(--black); }
+  .card img { transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+  .card:hover img { transform: scale(1.03); }
+}
+
+/* Marquee strip under the hero */
+.marquee {
+  overflow: hidden;
+  background: var(--black);
+  color: var(--white);
+  border-top: 1px solid var(--black);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 50s linear infinite;
+  will-change: transform;
+}
+.marquee.is-paused .marquee-track { animation-play-state: paused; }
+.marquee-group { display: flex; flex: none; }
+.marquee-group span {
+  padding: 16px 0 16px 0.6em;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
 
 /* ---------- Tablet ---------- */
 @media (max-width: 960px) {
@@ -335,7 +420,7 @@ p { margin: 0; }
     border-bottom: 1px solid var(--black);
   }
   .nav.is-open { display: flex; }
-  .nav a { padding: 18px 16px; border-bottom: 1px solid var(--black); border-top: 0; }
+  .nav a { padding: 18px 16px; border-bottom: 1px solid var(--black); border-top: 0; background: none; }
   .nav a:last-child { border-bottom: 0; }
   .nav a:hover,
   .nav a[aria-current="page"] { border-bottom-color: var(--black); text-decoration: underline; }
