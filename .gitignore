@@ -1,1 +1,5 @@
 .DS_Store
+
+# local drop folder for reel originals. Never deploy: a public/ folder
+# makes Vercel serve only that folder (homepage 404s). See scripts/reels.sh.
+public/

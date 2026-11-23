@@ -45,19 +45,20 @@ if (root.classList.contains('motion')) {
   // 3. Proof bar: "150K+" counts up from 0. Screen readers get the real value.
   const counters = [];
   document.querySelectorAll('.proof strong').forEach((el) => {
-    const m = el.textContent.trim().match(/^(\d+)(.*)$/);
+    const m = el.textContent.trim().match(/^(\d+(?:\.\d+)?)(.*)$/);
     if (!m) return;
     const target = Number(m[1]);
+    const decimals = (m[1].split('.')[1] || '').length;
     const suffix = m[2];
     el.textContent = '';
     const real = document.createElement('span');
     real.className = 'sr-only';
-    real.textContent = target + suffix;
+    real.textContent = m[1] + suffix;
     const shown = document.createElement('span');
     shown.setAttribute('aria-hidden', 'true');
-    shown.textContent = '0' + suffix;
+    shown.textContent = (0).toFixed(decimals) + suffix;
     el.append(real, shown);
-    counters.push({ shown, target, suffix });
+    counters.push({ shown, target, suffix, decimals });
   });
 
   let counted = false;
@@ -69,7 +70,7 @@ if (root.classList.contains('motion')) {
     const tick = (now) => {
       const t = Math.min(1, (now - start) / DURATION);
       const eased = 1 - Math.pow(1 - t, 3);
-      counters.forEach((c) => { c.shown.textContent = Math.round(c.target * eased) + c.suffix; });
+      counters.forEach((c) => { c.shown.textContent = (c.target * eased).toFixed(c.decimals) + c.suffix; });
       if (t < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
@@ -93,10 +94,20 @@ if (root.classList.contains('motion')) {
   const footerIo = new IntersectionObserver(onEnter, { threshold: 0.5 });
   document.querySelectorAll('.site-footer .wrap > *').forEach((el) => footerIo.observe(el));
 
+  let onLoad = 0;
   document.querySelectorAll(
     '.section-label, .section-title, .card, .highlights li, .about-short p:not(.section-label),' +
-    '.text-link, .proof li, .log li'
-  ).forEach((el) => io.observe(el));
+    '.text-link, .proof li, .log li, .reveal'
+  ).forEach((el) => {
+    // Already peeking onto the screen at load: fade it in now (after the
+    // heading) instead of waiting for a scroll that may never come.
+    if (el.getBoundingClientRect().top < window.innerHeight - 40) {
+      reveal(el, { delay: 0.25 + Math.min(onLoad++, 6) * STAGGER });
+      if (el.closest('.proof')) countUp();
+    } else {
+      io.observe(el);
+    }
+  });
 }
 
 // 5. Marquee: pause the CSS loop while it's off screen (saves battery on phones)
