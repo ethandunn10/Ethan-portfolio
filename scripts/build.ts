@@ -188,7 +188,10 @@ function reelCards(list: Reel[]) {
   }).join('\n            ');
   const script = list.some((r) => has(r.file)) ? '\n        <script src="/reels.js" defer></script>' : '';
   const wide = list.some((r) => r.width && r.height && r.width > r.height);
-  return { html: `<ul class="reel-row${wide ? ' reel-row--wide' : ''}" role="list">\n            ${cards}\n        </ul>${script}` };
+  const hint = list.length > 1
+    ? `\n          <div class="reel-hint" aria-hidden="true"><span class="reel-hint-label">Swipe for more ${icon('arrow-right', 16)}</span><span class="reel-dots">${list.map(() => '<span></span>').join('')}</span></div>`
+    : '';
+  return { html: `<div class="reel-scroller">\n          <ul class="reel-row${wide ? ' reel-row--wide' : ''}" role="list">\n            ${cards}\n          </ul>${hint}\n        </div>${script}` };
 }
 
 function videosPage() {

@@ -267,8 +267,10 @@ p { margin: 0; }
     transition: opacity 0.15s ease-out, visibility 0s linear 0.15s;
   }
   .nav-open .site-nav { opacity: 1; visibility: visible; transition: opacity 0.15s ease-out, visibility 0s; }
-  html.nav-open,
-  html.nav-open body { overflow: hidden; }
+  /* Lock scroll on <html> only. Putting overflow:hidden on <body> too makes
+     body its own scroll box, so the sticky header snaps back to the top of
+     the page (off-screen once you've scrolled) and leaves a see-through gap. */
+  html.nav-open { overflow: hidden; }
 
   .nav-list { flex: 1; flex-direction: column; align-items: stretch; gap: 0; }
   .nav-item { border-bottom: 1px solid var(--line); }
@@ -856,7 +858,9 @@ p { margin: 0; }
 
 /* ReelCard: our own 9:16 player */
 .reel-row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.reel { display: flex; flex-direction: column; gap: 14px; }
+/* position: relative keeps the absolutely-positioned .sr-only text inside the
+   scroll row; otherwise it escapes the overflow clip and widens the page on phones */
+.reel { position: relative; display: flex; flex-direction: column; gap: 14px; }
 .reel-card {
   position: relative;
   display: block;
@@ -896,6 +900,8 @@ p { margin: 0; }
 .reel-meta h3 { font-size: 18px; letter-spacing: -0.02em; line-height: 1.25; }
 .reel-views { display: inline-flex; align-items: center; gap: 6px; font-size: 15px; }
 .reel-ig { display: inline-flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+/* "Swipe for more" hint: phone only, shown by reels.js when the row overflows */
+.reel-hint { display: none; }
 
 /* Videos: featured video, two columns */
 .featured { display: grid; grid-template-columns: minmax(0, 45fr) minmax(0, 55fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
@@ -932,7 +938,7 @@ p { margin: 0; }
   a.tool:hover .tool-arrow { transform: translate(3px, -3px); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .live-dot::after, .step--in-progress .icon { animation: none; }
+  .live-dot::after, .step--in-progress .icon, .reel-hint-label .icon { animation: none; }
 }
 
 /* ---------- Tablet ---------- */
@@ -997,7 +1003,25 @@ p { margin: 0; }
   .reel-row { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--pad); margin: 0 calc(-1 * var(--pad)); padding: 0 var(--pad) 8px; scrollbar-width: none; }
   .reel-row::-webkit-scrollbar { display: none; }
   .reel { flex: 0 0 72%; scroll-snap-align: start; }
-  .reel-row--wide .reel { flex-basis: 88%; }
+  .reel-row--wide .reel { flex-basis: 82%; }
+  .reel-hint {
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.3s;
+  }
+  .reel-scroller.can-scroll .reel-hint { display: flex; }
+  .reel-hint-label { display: inline-flex; align-items: center; gap: 6px; }
+  .reel-hint-label .icon { animation: reel-nudge 1.4s ease-in-out infinite; }
+  .reel-scroller.is-end .reel-hint-label { opacity: 0.45; }
+  .reel-scroller.is-end .reel-hint-label .icon { animation: none; }
+  .reel-dots { display: flex; gap: 6px; }
+  .reel-dots span { width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--black); transition: background-color 0.2s; }
+  .reel-dots span.is-on { background: var(--black); }
+  @keyframes reel-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
   .featured { grid-template-columns: 1fr; gap: 28px; }
   .featured-video { justify-self: stretch; max-width: none; }
   .wins li { grid-template-columns: 1fr; gap: 4px; }
